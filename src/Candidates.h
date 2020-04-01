@@ -6,31 +6,42 @@
 #define SRC_CANDIDATES_H
 #include <string>
 #include <vector>
+#include <algorithm>
 #include "Candidate.h"
 
 class Candidates {
 private:
-    std::vector<int> winners;
-    std::vector<int> losers;
-    std::vector<int> undecided;
+    std::vector<Candidate> winners;
+    std::vector<Candidate> losers;
+    std::vector<Candidate> undecided;
     std::vector<Candidate> candidateList;
 public:
+    enum Status_Type{
+        Undecided,
+        Winner,
+        Loser,
+        MAX_Status_Type
+    };
+    Candidates();
     Candidates(std::vector<Candidate> candidates);
 
     int getWinnerCount();
-    std::vector<int> getWinners();
+    std::vector<Candidate> getWinners();
 
     int getLosersCount();
-    std::vector<int> getLosers();
+    std::vector<Candidate> getLosers();
 
     int getAllCount();
     int getTotalStillIn();
 
     std::string getName(int id);
 
-    int setCandidate(std::string);
+    //Add candidate to undecided
+    void addCandidate(std::string);
 
-    int RemoveCandidate(int)
+    // Change list that candidate is in
+    void setCandidate(std::string candidateName, std::vector<Candidate> moveFromList, std::vector<Candidate>moveToList);
+
 };
 
 
