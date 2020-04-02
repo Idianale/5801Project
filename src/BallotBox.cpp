@@ -14,7 +14,7 @@ BallotBox::BallotBox(int electionType_)
 vector<vector<int>> BallotBox::AddVotes(string[] filenames, int fileTotal)
 {
   bool error_check = false;
-  vector<vector<int>> votes;
+  // vector<vector<int>> votes;
 
   for(int i = 0 ; i < fileTotal ; i++){
     if(BallotBox::AddVotesHelper(filenames[i],&votes)){
@@ -26,6 +26,27 @@ vector<vector<int>> BallotBox::AddVotes(string[] filenames, int fileTotal)
   
   return votes;
 }
+
+
+// int BallotBox::AddVotes(string[] filenames, int fileTotal)
+// {
+//   bool error_check = false;
+//   // vector<vector<int>> votes;
+
+//   for(int i = 0 ; i < fileTotal ; i++){
+//     if(BallotBox::AddVotesHelper(filenames[i],&votes)){
+//       return 1;
+//     }
+//   }
+  
+//   return 0;
+// }
+
+
+// vector<vector<int>> BallotBox::GetVotes(){
+//   return votes;
+// }
+
 
 
 int BallotBox::AddVotesHelper(string filename, vector<vector<int>>& votes){ //does this work?

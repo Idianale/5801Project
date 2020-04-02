@@ -11,11 +11,18 @@ class BallotBox {
   public:
     BallotBox(int electionType_);
     vector<vector<int>> AddVotes(string[] filenames, int fileTotal);
-    // int AddVotes(vector<string> filenames);
-    vector<vector<int>>* getBallots();
+    // alternative implementation(split function above into 2 functions):
+    // int AddVotes(string[] filenames, int fileTotal);
+    // vector<vector<int>>* getBallots();
+
+    //int AddVotes(string[] filenames, int fileTotal);
+
+
+
+
   private:
     int AddVotesHelper(string filename, vector<vector<int>>& votes);
-    vector<vector<int>>* votes;  
+    vector<vector<int>> votes;  
     int colTotal;   // defined when AddVotes is initially called?
     int electionType; 
     // TODO: standardize electiontype convention. 
