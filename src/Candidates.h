@@ -42,6 +42,9 @@ public:
     // Change list that candidate is in
     void setCandidate(std::string candidateName, std::vector<Candidate> moveFromList, std::vector<Candidate>moveToList);
 
+    //Find candidate with lowest votes.
+    // Returns index of candidate with lowest votes
+    int findLowestVote
 };
 
 
