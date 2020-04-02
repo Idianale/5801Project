@@ -9,8 +9,11 @@
 using namespace std;
 class BallotBox {
   public:
+    BallotBox();
     BallotBox(int electionType_);
     vector<vector<int>> AddVotes(string[] filenames, int fileTotal);
+    int GetVoteTotal();
+
     // alternative implementation(split function above into 2 functions):
     // int AddVotes(string[] filenames, int fileTotal);
     // vector<vector<int>>* getBallots();
@@ -27,11 +30,12 @@ class BallotBox {
     int electionType; 
     // TODO: standardize electiontype convention. 
     //       ballotbox will be initially programmed to:
-    //       0 = plurality, 1 = STV
+    //       1 = plurality, 2 = STV
     int voteTotal;
     vector<string> filenames_;
     string filename;
     ifstream fin;
+
 };
 
 

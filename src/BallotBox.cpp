@@ -9,14 +9,18 @@ BallotBox::BallotBox(int electionType_)
   electionType = electionType_;
 
 }
-//how to ensure this returns the correct value?
 
+BallotBox::BallotBox(){
+  voteTotal = 0;
+}
+
+//how to ensure this returns the correct value?
 vector<vector<int>> BallotBox::AddVotes(string[] filenames, int fileTotal)
 {
   bool error_check = false;
   // vector<vector<int>> votes;
-
-  for(int i = 0 ; i < fileTotal ; i++){
+  int filetotal = fileTotal;
+  for(int i = 0 ; i < filetotal ; i++){
     if(BallotBox::AddVotesHelper(filenames[i],&votes)){
       error_check = true;
     }
@@ -24,9 +28,17 @@ vector<vector<int>> BallotBox::AddVotes(string[] filenames, int fileTotal)
   if(error_check)
     votes.clear();
   
+  //determine droop count
+  voteTotal = votes.size();
+
+
+
+
   return votes;
 }
-
+int BallotBox::GetVoteTotal(){
+  return voteTotal;
+}
 
 // int BallotBox::AddVotes(string[] filenames, int fileTotal)
 // {
@@ -77,6 +89,8 @@ int BallotBox::AddVotesHelper(string filename, vector<vector<int>>& votes){ //do
                            //might push_front run quicker? Might not matter
 
   }
+
+  fin.close();
   return 0;
 }
 
