@@ -1,4 +1,5 @@
 // Driver Class 
+/*
 #include <cstdlib>
 #include <iostream>
 #include <conio.h>
@@ -9,6 +10,7 @@ inline bool FileExists(const string& name);
 
 class Driver
 {
+private:
     string testType;
     int test;
     string * voteFiles;
@@ -55,7 +57,7 @@ public:
         {
             cout << "Test Type not found - Please re-eneter\n\n";
             DisplayTestType();
-                
+            
         }
 
     }
@@ -173,7 +175,7 @@ inline bool FileExists(const string& name) {
 int main(){
     int number;
     Driver Election;
-    //Sets up and gets value from user!
+    Sets up and gets value from user!
     Election.StartUp();
     cout << "Run Election!\n\n\n";
 
@@ -182,5 +184,5 @@ int main(){
 
 }
 
-
+*/
 
