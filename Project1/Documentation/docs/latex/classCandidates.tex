@@ -1,0 +1,78 @@
+\hypertarget{classCandidates}{}\section{Candidates Class Reference}
+\label{classCandidates}\index{Candidates@{Candidates}}
+
+
+Collaboration diagram for Candidates\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=182pt]{classCandidates__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCandidates_affbd141eaea1fb26ce3e7162414c6594}\label{classCandidates_affbd141eaea1fb26ce3e7162414c6594}} 
+enum {\bfseries Status\+\_\+\+Type} \{ {\bfseries Undecided}, 
+{\bfseries Winner}, 
+{\bfseries Loser}, 
+{\bfseries M\+A\+X\+\_\+\+Status\+\_\+\+Type}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCandidates_a01101d31a39bf9ecfac19dfd410a4e2b}\label{classCandidates_a01101d31a39bf9ecfac19dfd410a4e2b}} 
+{\bfseries Candidates} (std\+::vector$<$ \hyperlink{classCandidate}{Candidate} $>$ candidates)
+\item 
+\mbox{\Hypertarget{classCandidates_a5b0d5526b0404d62eacf9508fa0d734a}\label{classCandidates_a5b0d5526b0404d62eacf9508fa0d734a}} 
+int {\bfseries get\+Winner\+Count} ()
+\item 
+\mbox{\Hypertarget{classCandidates_aab9db44b4a11c2f64d9e6906fdc4fd59}\label{classCandidates_aab9db44b4a11c2f64d9e6906fdc4fd59}} 
+std\+::vector$<$ \hyperlink{classCandidate}{Candidate} $>$ {\bfseries get\+Winners} ()
+\item 
+\mbox{\Hypertarget{classCandidates_a60467d71e75d8435ff6df2f2fc4f64ae}\label{classCandidates_a60467d71e75d8435ff6df2f2fc4f64ae}} 
+int {\bfseries get\+Losers\+Count} ()
+\item 
+\mbox{\Hypertarget{classCandidates_a5adad2ad59f565081bc723e03b3ab7c2}\label{classCandidates_a5adad2ad59f565081bc723e03b3ab7c2}} 
+std\+::vector$<$ \hyperlink{classCandidate}{Candidate} $>$ {\bfseries get\+Losers} ()
+\item 
+\mbox{\Hypertarget{classCandidates_a0e1a401227fc4edc7017a555c600ce88}\label{classCandidates_a0e1a401227fc4edc7017a555c600ce88}} 
+int {\bfseries get\+All\+Count} ()
+\item 
+\mbox{\Hypertarget{classCandidates_a1e83512f338373dd37cfdbc1c465ebaf}\label{classCandidates_a1e83512f338373dd37cfdbc1c465ebaf}} 
+int {\bfseries get\+Total\+Still\+In} ()
+\item 
+\mbox{\Hypertarget{classCandidates_a0572a194cae9dd16480de5ecd199994a}\label{classCandidates_a0572a194cae9dd16480de5ecd199994a}} 
+std\+::string {\bfseries get\+Name} (int id)
+\item 
+\mbox{\Hypertarget{classCandidates_aa5a6ed6278777269d02810ff666e8ab5}\label{classCandidates_aa5a6ed6278777269d02810ff666e8ab5}} 
+void {\bfseries add\+Candidate} (std\+::string)
+\item 
+\mbox{\Hypertarget{classCandidates_aa64ba83a526524c5d72666c86e2a0fd5}\label{classCandidates_aa64ba83a526524c5d72666c86e2a0fd5}} 
+void {\bfseries set\+Candidate} (std\+::string candidate\+Name, std\+::vector$<$ \hyperlink{classCandidate}{Candidate} $>$ move\+From\+List, std\+::vector$<$ \hyperlink{classCandidate}{Candidate} $>$move\+To\+List)
+\item 
+\mbox{\Hypertarget{classCandidates_ae8c7d64cda478b622414cd3ba5c172e6}\label{classCandidates_ae8c7d64cda478b622414cd3ba5c172e6}} 
+int {\bfseries find\+Lowest\+Vote} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCandidates_a524fbccad98042e87cb439ad6a23a121}\label{classCandidates_a524fbccad98042e87cb439ad6a23a121}} 
+std\+::vector$<$ \hyperlink{classCandidate}{Candidate} $>$ {\bfseries winners}
+\item 
+\mbox{\Hypertarget{classCandidates_afa9e0ea758c1ce3480ce370c81d2f2d5}\label{classCandidates_afa9e0ea758c1ce3480ce370c81d2f2d5}} 
+std\+::vector$<$ \hyperlink{classCandidate}{Candidate} $>$ {\bfseries losers}
+\item 
+\mbox{\Hypertarget{classCandidates_a12aafec4ca785542ae4408fbe11c2bd0}\label{classCandidates_a12aafec4ca785542ae4408fbe11c2bd0}} 
+std\+::vector$<$ \hyperlink{classCandidate}{Candidate} $>$ {\bfseries undecided}
+\item 
+\mbox{\Hypertarget{classCandidates_ac7a165f3d34b29981576e63d94ef9e6e}\label{classCandidates_ac7a165f3d34b29981576e63d94ef9e6e}} 
+std\+::vector$<$ \hyperlink{classCandidate}{Candidate} $>$ {\bfseries candidate\+List}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/hans4837/\+C\+S\+C\+I\+\_\+5801/repo-\/\+Team16/\+Project1/src/Candidates.\+h\item 
+/home/hans4837/\+C\+S\+C\+I\+\_\+5801/repo-\/\+Team16/\+Project1/src/Candidates.\+cpp\end{DoxyCompactItemize}
