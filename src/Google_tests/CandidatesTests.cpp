@@ -14,37 +14,46 @@ EXPECT_EQ(testCandidates.candidateList.isEmpty(), true);
 };
 
 Test(Candidates, GetWinnerCount){
-    EXPECT_EQ();
+    const Candidates() testCandidates;
+
+    EXPECT_EQ(testCandidates.winners.size(), 0);
 }
 
 Test(Candidates, GetWinners){
-    EXPECT_EQ();
+    Candidates() testCandidates;
+    EXPECT_EQ(testCandidates.getWinners(), {});
 }
 
 Test(Candidates, GetLoserCount){
-    EXPECT_EQ();
+    Candidates() testCandidates;
+    EXPECT_EQ(testCandidates.getLoserCount(),0);
 }
 
 Test(Candidates, GetLosers){
-    EXPECT_EQ();
+    Candidates() testCandidates;
+    EXPECT_EQ(testCandidates.losers.size(), 0);
 }
 
 Test(Candidates, getAllCount){
-    EXPECT_EQ();
+    Candidates() testCandidates;
+    EXPECT_EQ(testCandidates.getAllCount(), 0);
 }
 
 Test(Candidates, getTotalStillIn){
-    EXPECT_EQ();
+    Candidates() testCandidates;
+    EXPECT_EQ(testCandidates.getTotalStillIn, 0);
 }
 
 Test(Candidates, AddCandidates){
-    EXPECT_EQ();
+    Candidates() testCandidates;
+    testCandidates.addCandidate("A");
+    EXPECT_EQ(testCandidates.undecided.size(), 1);
 }
 
 Test(Candidates, SetCandidates){
-    EXPECT_EQ();
-}
-
-Test(Candidates, FindLowestVotes){
-    EXPECT_EQ();
+    Candidates() testCandidates;
+    testCandidates.addCandidate("A");
+    testCandidates.setCandidates("A", testCandidates.undecided, testCandidates.winners);
+    EXPECT_EQ(testCandidates.undecided.size(), 0);
+    EXPECT_EQ(testCandidates.winners.size(), 1);
 }
