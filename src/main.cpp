@@ -5,16 +5,16 @@
 #include <iostream>
 #include <conio.h>
 #include <vector>
-#include <BallotBox.cpp>
-#include <BallotBox.h>
-#include <Candidate.h>
-#include <Candidate.cpp>
-#include <Candidates.h>
-#include <Candidates.cpp>
-#include <Election.h>
-#include <Election.cpp>
-#include <Reporter.h>
-#include <Reporter.cpp>
+#include "BallotBox.cpp"
+#include "BallotBox.h"
+#include "Candidate.h"
+#include "Candidate.cpp"
+#include "Candidates.h"
+#include "Candidates.cpp"
+#include "Election.h"
+#include "Election.cpp"
+#include "Reporter.h"
+#include "Reporter.cpp"
 
 int main(){
 
