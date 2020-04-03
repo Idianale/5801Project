@@ -44,7 +44,7 @@ public:
 
     //Find candidate with lowest votes.
     // Returns index of candidate with lowest votes
-    int findLowestVote
+    int findLowestVote;
 };
 
 

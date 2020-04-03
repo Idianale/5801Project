@@ -5,40 +5,40 @@
 #include <iostream>
 #include <conio.h>
 #include <vector>
-#include <BallotBox.cpp>
-#include <BallotBox.h>
-#include <Candidate.h>
-#include <Candidate.cpp>
-#include <Candidates.h>
-#include <Candidates.cpp>
-#include <Election.h>
-#include <Election.cpp>
-#include <Reporter.h>
-#include <Reporter.cpp>
+#include "BallotBox.cpp"
+#include "BallotBox.h"
+#include "Candidate.h"
+#include "Candidate.cpp"
+#include "Candidates.h"
+#include "Candidates.cpp"
+#include "Election.h"
+#include "Election.cpp"
+#include "Reporter.cpp"
+#include "Driver.cpp"
 
-int main(){
+int main() {
 
-        Driver driver;
-        Election Election;
-        Reporter report;
-    
-            //Get inputs from User
-            driver.Drive();
+    Driver Data;
+    Election Elect;
+    Reporter report;
+    Candidates Cands;
+    //Get inputs from User
+    Data.Drive();
 
-                //Run Election Algorthim
-            Election.runElection(Data.getVoteFiles(), Data.getSize(), Data.getTest(), Data.getTotalSeats());
-            //Inputs --- Vote files-- Total # of vote files -- Test # -- Total # of seats
+    //Run Election Algorthim
+    Elect.runElection(Data.getVoteFiles(), Data.getSize(), Data.getTest(), Data.getTotalSeats());
+    //Inputs --- Vote files-- Total # of vote files -- Test # -- Total # of seats
 
-            //Start Audit
-            Reporter.createAudit() // Creates Audit
-            Reporter.writeToFile(Data.getTest(), Data.getTotalSeats(), Cand.getAllCount(), Cand.getWinnerCount(), Cand.getLosersCount()); //Writes Audit to File
-            //Inputs --- Test # -- Total # of seats -- Total Candidates -- Total Winners -- Total Losers
+    //Start Audit
+    report.createAudit(); // Creates Audit
+    report.writeToFile(Data.getTest(), Data.getTotalSeats(), Cands.getAllCount(), Cands.getWinnerCount(), Cands.getLosersCount()); //Writes Audit to File
+        //Inputs --- Test # -- Total # of seats -- Total Candidates -- Total Winners -- Total Losers
 
-            Reporter.writeToScreen(Data.getTest(), BallotBox.GetVoteTotal(), Data.getTotalSeats(), Cand.getAllCount(), Cand.getWinnerCount(), Cand.getLosersCount(); //Writes the results to the screen
-            //Inputs --- Test # -- Total # of votes -- Total # of seats -- Total Candidates -- Total Winners -- Total Losers
-                
-            delete[] driver.getVoteFiles();
+    report.writeToScreen(Data.getTest(), BallotBox.GetVoteTotal(), Data.getTotalSeats(), Cands.getAllCount(), Cands.getWinnerCount(), Cands.getLosersCount(); //Writes the results to the screen
+    //Inputs --- Test # -- Total # of votes -- Total # of seats -- Total Candidates -- Total Winners -- Total Losers
 
-        system("PAUSE");
-    
-    }
+    delete[] Data.getVoteFiles();
+
+    system("PAUSE");
+
+}
