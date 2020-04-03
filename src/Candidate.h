@@ -19,6 +19,7 @@ public:
     std::string getName();
     void setName(std::string newName);
 
+    friend bool operator== (Candidate c1, Candidate c2);
 
 };
 

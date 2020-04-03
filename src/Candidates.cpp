@@ -53,11 +53,10 @@ void Candidates::setCandidate(std::string candidateName, std::vector<Candidate> 
     // Find candidate in moveFromList
     // move it to moveToList
     // remove candidate fromList
-    for(auto fromElement : moveFromList){
+    for(Candidate fromElement : moveFromList){
         if(fromElement.getName() == candidateName){
             moveToList.push_back(fromElement);
             moveFromList.erase(std::remove(moveFromList.begin(),  moveFromList.end(), fromElement), moveFromList.end());
-            return;
         }
     }
 

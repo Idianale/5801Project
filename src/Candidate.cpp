@@ -36,3 +36,7 @@ std::string Candidate::getName(){
 void Candidate::setName(std::string newName) {
     name= newName;
 }
+
+bool operator== (Candidate c1, Candidate c2){
+    return (c1.getName() == c2.getName());
+}
