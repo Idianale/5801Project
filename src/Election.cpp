@@ -54,7 +54,7 @@ void Election::runElection(string* filenames, int fileSize,
     int **results;
   // STV Election Type
   if(electionType_==1){
-    results = STVProtocol(votes);
+    results = STVProtocol(votes, candidateNames);
 
   }
 
@@ -64,6 +64,32 @@ void Election::runElection(string* filenames, int fileSize,
   }
 }
 
+int** Election::STVProtocol(int** votes, string* candidateNames){
+
+
+
+
+  while(candidates->getTotalStillIn()!=0){
+
+ candidates[c]->incrementVotes();
+
+    for(int bnum = 0 ; bnum < voteTotal ; bnum ++){
+      // if vote decision is undecided
+      if(votes[bnum][0]==0){
+        for(int c = 1 ; c <= candidateTotal ; c++){
+          if(ballots[bnum][c]==1){
+            ballots[bnum][0]=c;
+             candidates[c]->incrementVotes();
+            candidateNames[c]
+            //TODO find a way to get this info into Candidates class
+          }
+        }
+      } 
+
+
+    }
+  }
+}
 
 
 

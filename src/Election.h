@@ -25,7 +25,7 @@ class Election {
     int voteTotal;
     int candidateTotal;
 
-    int** STVProtocol(int** votes);
+    int** STVProtocol(int** votes, string* candidateNames);
     int** PluralityProtocol(int** votes);
 
     void setCandidates(Candidates* candidates_, string* filenames);
