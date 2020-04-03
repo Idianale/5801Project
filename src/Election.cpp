@@ -66,25 +66,37 @@ void Election::runElection(string* filenames, int fileSize,
 
 int** Election::STVProtocol(int** votes, string* candidateNames){
 
+int candidateStatus[candidateTotal+1];
+int votecounts[candidateTotal+1];
+for(int i = 0 ; i < candidateTotal+1 ; i++)
+  {votecounts[i] = 0;
+  candidateStatus[i]=0;}
 
 
-
-  while(candidates->getTotalStillIn()!=0){
+while(candidates->getTotalStillIn()!=0){
 
  candidates[c]->incrementVotes();
 
-    for(int bnum = 0 ; bnum < voteTotal ; bnum ++){
-      // if vote decision is undecided
-      if(votes[bnum][0]==0){
-        for(int c = 1 ; c <= candidateTotal ; c++){
-          if(ballots[bnum][c]==1){
-            ballots[bnum][0]=c;
-             candidates[c]->incrementVotes();
-            candidateNames[c]
-            //TODO find a way to get this info into Candidates class
-          }
+  for(int bnum = 0 ; bnum < voteTotal ; bnum ++){
+    // if vote decision is undecided
+    if(votes[bnum][0]==0){
+      for(int c = 1 ; c <= candidateTotal ; c++){
+        if(ballots[bnum][c]==1){
+          ballots[bnum][0]=c;
+            candidates->candidateList[c-1]->incrementVotes();
+            votecounts[c]+=1;
+            if(votecounts[c]>=droopCount)
+            {
+              int newWinner=c;
+              candidates->setCandidate(candidateNames[c], candidates->undecided,
+                                                          candidates->winners);
+              ballots[bnum][0]=0
+            }
+          //candidateNames[c]
+          //TODO find a way to get this info into Candidates class
         }
-      } 
+      }
+    } 
 
 
     }
