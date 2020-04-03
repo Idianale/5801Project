@@ -28,40 +28,92 @@ public:
         Loser,
         MAX_Status_Type
     };
-    Candidates();
+
     /***
+     * Default constructor for Candidates
+     * no parameters and creates an empty list of candidates
+     */
+    Candidates();
+
+    /***
+     * Candidates Constructor for candidates
+     * @param candidates list of canidate object
      *
-     * @param candidates
      */
 
     Candidates(std::vector<Candidate> candidates);
 
     /***
-     * @b
+     *  getWinnerCount()
      *
-     * @return
+     *
+     * @returns int representing how many votes the winner recieved
      */
-
 
     int getWinnerCount();
 
     /***
+     * getWinners()
      *
-     * @return
+     * @return std::vector<candidate> getWinners
      */
     std::vector<Candidate> getWinners();
 
+    /***
+    *  getLosersCount()
+    *
+    *
+    * @returns int representing how many votes the Losers recieved
+    */
+
     int getLosersCount();
+
+    /***
+    * getLosers()
+    *
+    * @return std::vector<candidate> getLosers
+    */
     std::vector<Candidate> getLosers();
 
+
+    /***
+    * getAllCount
+    *
+    * @return int of all votes
+    */
     int getAllCount();
+
+
+    /***
+    * getAllCount
+    *
+    * @return int of candidates in undecided
+    */
     int getTotalStillIn();
 
+
+    /***
+    * getName
+    *
+    * @return getName of candidate
+    */
     std::string getName(int id);
 
+    /***
+     * addCandidate
+     * Add candidate object to undecided list
+     */
     //Add candidate to undecided
     void addCandidate(std::string);
 
+    /***
+     * setCandidate
+     * @param candidateName
+     * @param moveFromList
+     * @param moveToList
+     *
+     * move candidate from undecided list to another list
+     */
     // Change list that candidate is in
     void setCandidate(std::string candidateName, std::vector<Candidate> moveFromList, std::vector<Candidate>moveToList);
 

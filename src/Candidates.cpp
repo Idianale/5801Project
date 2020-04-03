@@ -47,6 +47,7 @@ std::string Candidates::getName(int id){
 void Candidates::addCandidate(std::string candidateName){
     Candidate newCandidate{candidateName};
     undecided.push_back(newCandidate);
+    candidateList.push_back(newCandidate);
 }
 
 void Candidates::setCandidate(std::string candidateName, std::vector<Candidate> moveFromList, std::vector<Candidate>moveToList) {
