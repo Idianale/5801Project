@@ -60,6 +60,16 @@ void Candidates::setCandidate(std::string candidateName, std::vector<Candidate> 
             moveFromList.erase(std::remove(moveFromList.begin(),  moveFromList.end(), fromElement), moveFromList.end());
         }
     }
+}
 
+int Candidates::findLowestVote() {
+    int min{50000};
+    int index{};
+    for(int i{0}; i < static_cast<int>(candidateList.size()); i++){
+        if(min <  candidateList[i].getVoteCount()){
+            index = i;
+            min = candidateList[i].getVoteCount();
+        }
+    }
 }
 
