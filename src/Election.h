@@ -23,11 +23,14 @@ class Election {
     int** results;
     bool shuffle_status;
     int voteTotal;
+    int candidateTotal;
 
+    int** STVProtocol(int** votes);
+    int** PluralityProtocol(int** votes);
 
     void setCandidates(Candidates* candidates_, string* filenames);
     void setBallotBox(BallotBox* ballotBox_, string* filenames, int fileTotal);
-    int** shuffle(int** votes);
+    int** shuffle(BallotBox* ballotbox, int totalVotes, int totalCand);
     int** BasicProtocol(Candidates* candidates_, Ballotbox* ballotBox_,int** votes);
     void WinnerProtocol(int bnum, int** ballots, BallotBox* ballotBox, Candidates* candidates);
     void LoserProtocol(int**ballots,BallotBox* ballotBox, Candidates* candidates);
