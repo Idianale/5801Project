@@ -74,9 +74,6 @@ for(int i = 0 ; i < candidateTotal+1 ; i++)
 
 
 while(candidates->getTotalStillIn()!=0){
-
- candidates[c]->incrementVotes();
-
   for(int bnum = 0 ; bnum < voteTotal ; bnum ++){
     // if vote decision is undecided
     if(votes[bnum][0]==0){
@@ -87,10 +84,7 @@ while(candidates->getTotalStillIn()!=0){
             votecounts[c]+=1;
             if(votecounts[c]>=droopCount)
             {
-              int newWinner=c;
-              candidates->setCandidate(candidateNames[c], candidates->undecided,
-                                                          candidates->winners);
-              ballots[bnum][0]=0
+              STVWinnerProtocol(bnum, votes, candidateNames &votecounts, c);
             }
           //candidateNames[c]
           //TODO find a way to get this info into Candidates class
@@ -99,8 +93,10 @@ while(candidates->getTotalStillIn()!=0){
     } 
 
 
-    }
   }
+}
+  if(candidates->getTotalStillIn()!=0)
+    LoserProtocol(votes, candidateNames, &votecounts);
 }
 
 
@@ -108,8 +104,25 @@ while(candidates->getTotalStillIn()!=0){
 
 
 
-int** Election::PluralityProtocol(int** votes){
-  //A little help?
+int** Election::PluralityProtocol(int** votes,string* candidateNames){
+  int votecounts[candidateTotal+1];
+  for(int i = 0 ; i < candidateTotal+1 ; i++)
+    {votecounts[i] = 0;}
+  for(int i = 0 ;  i < voteTotal ; i++){
+    for(int j = 1 ; j <= candidateTotal; j++){
+      if(votes[i]!=0){
+        votecounts[i]+=1;
+        candidates->candidateList[j-1].incrementVote();
+      }
+    }
+  }
+  int winner=0;
+  for(int i = 1 ; i < candidateTotal+1 ; i++){
+    if(votecounts[i]>votecounts[i-1])
+      winner = i;
+  }
+  std::cout << "the winner is " candidateNames[winner]<<std::endl;
+  
 }
 
 
