@@ -8,27 +8,30 @@ class Election {
 
   public:
 //   virtual void runElection() = 0;
-    Election(bool shufflestatus);
+    Election(bool shufflestatus_);
     void runElection(string* filenames, int fileSize, int electionType, int seatNum);
     int GetVoteTotal() {return voteTotal;}
 
   private: 
     int droopCount;
-   std::string testType;
-   BallotBox * ballotBox;
-   Candidates * candidates;
-   void setCandidates(BallotBox* box);
-   int electionType_; // 1 = STV, 2 = Plurality
-   int** results;
-   bool shuffle_status;
-   int voteTotal;
+    bool shuffle;
+    std::string testType;
+    BallotBox * ballotBox;
+    Candidates * candidates;
+    void setCandidates(BallotBox* box);
+    int electionType_; // 1 = STV, 2 = Plurality
+    int** results;
+    bool shuffle_status;
+    int voteTotal;
+    int candidateTotal;
 
+    int** STVProtocol(int** votes, string* candidateNames);
+    int** PluralityProtocol(int** votes);
 
     void setCandidates(Candidates* candidates_, string* filenames);
     void setBallotBox(BallotBox* ballotBox_, string* filenames, int fileTotal);
-    int shuffle(BallotBox* box);
-    int** render(BallotBox*box, bool shuffle);
-    int** BasicProtocol(Candidates* candidates_, Ballotbox* ballotBox_,int** votes);
+    int** shuffle(BallotBox* ballotbox, int totalVotes, int totalCand);
+    int** BasicProtocol(Candidates* candidates_, BallotBox* ballotBox_,int** votes);
     void WinnerProtocol(int bnum, int** ballots, BallotBox* ballotBox, Candidates* candidates);
     void LoserProtocol(int**ballots,BallotBox* ballotBox, Candidates* candidates);
   
