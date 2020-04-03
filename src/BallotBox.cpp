@@ -14,6 +14,16 @@ BallotBox::BallotBox(int electionType_){
   ballots = NULL;
 
 }
+
+// BallotBox::BallotBox(string* filenames,int fileTotal, int electionType_){
+//   electionType = electionType_;
+//   voteTotal = 0;
+//   colTotal = 0;
+//   ballots = NULL;
+//   int**x = AddVotes(filenames, fileTotal);
+// }
+
+
 int BallotBox::GetVoteTotal(){return voteTotal;}
 int BallotBox::GetTotalColumns(){return colTotal;}
 int** BallotBox::GetBallots(){return ballots;}
@@ -62,7 +72,7 @@ int** BallotBox::AddVotes(string* filenames, int fileTotal){
         // cout << word << endl; // debug
         stringstream s_entry(word);
         int entry = 0;
-        if(s_entry.rdbuf()->in_avail())
+        if(s_entry.rdbuf()->in_avail()) //TEST This (make sure plurality is coming up all zeroes)
           s_entry >> entry;
         x[j]=entry;
         j++;

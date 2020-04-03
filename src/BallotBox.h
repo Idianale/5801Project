@@ -11,6 +11,7 @@ class BallotBox {
   public:
     BallotBox();
     BallotBox(int electionType_);
+    // BallotBox(string* filenames,int fileTotal, int electionType_)
     int GetVoteTotal();
     int GetTotalColumns();
     int** GetBallots();
@@ -19,7 +20,7 @@ class BallotBox {
   private:
     int colTotal;  
     int electionType; 
-        int voteTotal;
+    int voteTotal;
     int ** ballots;
 };
 
