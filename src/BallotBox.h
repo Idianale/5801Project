@@ -11,31 +11,16 @@ class BallotBox {
   public:
     BallotBox();
     BallotBox(int electionType_);
-    vector<vector<int>> AddVotes(string[] filenames, int fileTotal);
     int GetVoteTotal();
-
-    // alternative implementation(split function above into 2 functions):
-    // int AddVotes(string[] filenames, int fileTotal);
-    // vector<vector<int>>* getBallots();
-
-    //int AddVotes(string[] filenames, int fileTotal);
-
-
-
+    int GetTotalColumns();
+    int** GetBallots();
+    int** AddVotes(string* filenames, int fileTotal);
 
   private:
-    int AddVotesHelper(string filename, vector<vector<int>>& votes);
-    vector<vector<int>> votes;  
-    int colTotal;   // defined when AddVotes is initially called?
+    int colTotal;  
     int electionType; 
-    // TODO: standardize electiontype convention. 
-    //       ballotbox will be initially programmed to:
-    //       1 = plurality, 2 = STV
-    int voteTotal;
-    vector<string> filenames_;
-    string filename;
-    ifstream fin;
-
+        int voteTotal;
+    int ** ballots;
 };
 
 
