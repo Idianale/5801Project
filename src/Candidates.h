@@ -9,13 +9,19 @@
 #include <algorithm>
 #include "Candidate.h"
 
+/*
+ * Candidates Class
+ * Holds information about candidates in the election and lists of who is a winner
+ * Loser, or undecided status
+ */
+
 class Candidates {
 private:
-    std::vector<Candidate> winners;
+public:
+    std::vector<Candidate> winners; //
     std::vector<Candidate> losers;
     std::vector<Candidate> undecided;
     std::vector<Candidate> candidateList;
-public:
     enum Status_Type{
         Undecided,
         Winner,
@@ -23,9 +29,26 @@ public:
         MAX_Status_Type
     };
     Candidates();
+    /***
+     *
+     * @param candidates
+     */
+
     Candidates(std::vector<Candidate> candidates);
 
+    /***
+     * @b
+     *
+     * @return
+     */
+
+
     int getWinnerCount();
+
+    /***
+     *
+     * @return
+     */
     std::vector<Candidate> getWinners();
 
     int getLosersCount();
@@ -44,7 +67,7 @@ public:
 
     //Find candidate with lowest votes.
     // Returns index of candidate with lowest votes
-    int findLowestVote
+    int findLowestVote();
 };
 
 
