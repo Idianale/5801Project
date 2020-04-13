@@ -35,7 +35,7 @@ void Election::runElection(string* filenames, int fileSize,
   getline(fin,line);
   stringstream s_row(line);
   string word;
-  int j=1;
+  int j=0;
   while(getline(s_row,word,',')&&j<tmp){
     myCandidates->addCandidate(word);
     candidateNames[j]=word;
@@ -51,7 +51,8 @@ void Election::runElection(string* filenames, int fileSize,
 
   if(shuffle_status)
     votes = shuffle(ballotBox,totalVotes, totalCand);
-    int **results;
+  
+  int **results;
   // STV Election Type
   if(electionType_==1){
     results = STVProtocol(votes, candidateNames);
@@ -64,10 +65,11 @@ void Election::runElection(string* filenames, int fileSize,
   }
 }
 
+//create new object voteVals, 1D array representing who is getting which vote for each ballot
 int** Election::STVProtocol(int** votes, string* candidateNames){
 
-int candidateStatus[candidateTotal+1];
-int votecounts[candidateTotal+1];
+int candidateStatus[candidateTotal];
+int votecounts[candidateTotal];
 for(int i = 0 ; i < candidateTotal+1 ; i++)
   {votecounts[i] = 0;
   candidateStatus[i]=0;}

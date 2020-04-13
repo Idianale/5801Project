@@ -30,7 +30,7 @@ int** BallotBox::GetBallots(){return ballots;}
 
 int** BallotBox::AddVotes(string* filenames, int fileTotal){
   using namespace std;
-  //Step 1: go through every file line by line to determine number of votes
+  //Step 1: go through every file line by line to determine number of votes (row count for 2d votes array)
   int totalVotes = 0;
   for(int i = 0 ; i < fileTotal ; i++){
     fstream fin(filenames[i]);
@@ -42,7 +42,9 @@ int** BallotBox::AddVotes(string* filenames, int fileTotal){
   }
   // std::cout << "Total votes is " << totalVotes << endl; // debug
   voteTotal += totalVotes;
-  int totalCols=1;
+
+  // Step 2: Determine candidate count for column of 2d votes array
+  int totalCols=0;
   fstream fin2(filenames[0]);
   std::string line;
   std::getline(fin2, line);
@@ -53,32 +55,40 @@ int** BallotBox::AddVotes(string* filenames, int fileTotal){
   // cout << "Total Columns is " << totalCols << "\n"; // debug
   colTotal = totalCols;
   fin2.close();
-  int** voteTable = new int*[totalVotes];
 
-  int it = 0;
+  // Step 3: create a 2d array containing vote values
+  int** voteTable = new int*[totalVotes];
+  int it = 0; //global iterator, persistent between files
+  // iterate over all files:
   for(int i = 0 ; i < fileTotal ; i++){
     fstream fin(filenames[i]);
     std::string temp;
-    getline(fin,line); //skip initial line
+    getline(fin,line); //skip initial line containing candidate names
     // cout << line <<endl; // debug
+                              // check this does not affect results
     while(getline(fin,line)&&it<totalVotes){
       // cout << line << endl; // debug
-      int* x = new int[totalCols];
-      x[0]=0;
-      stringstream s_row(line);
-      string word;
-      int j = 1;
-      while(getline(s_row,word,',')&&j<totalCols){
-        // cout << word << endl; // debug
-        stringstream s_entry(word);
-        int entry = 0;
-        if(s_entry.rdbuf()->in_avail()) //TEST This (make sure plurality is coming up all zeroes)
-          s_entry >> entry;
-        x[j]=entry;
-        j++;
+
+      // skip the empty line found at the end of every csv file
+      if(line.empty()){
+        // place row of csv file in string stream
+        stringstream s_row(line);
+        // create new row of ints
+        int* x = new int[totalCols];
+        string word;
+        int j = 0;
+        while(getline(s_row,word,',')&&j<totalCols){
+          // cout << word << endl; // debug
+          stringstream s_entry(word);
+          int entry = 0;
+          if(s_entry.rdbuf()->in_avail()) //TEST This (make sure plurality is coming up all zeroes)
+            s_entry >> entry;
+          x[j]=entry;
+          j++;
+        }
+        voteTable[it] = x;
+        it++;
       }
-      voteTable[it] = x;
-      it++;
     }
     fin.close();
   }
