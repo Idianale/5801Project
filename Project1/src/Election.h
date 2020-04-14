@@ -24,17 +24,25 @@ class Election {
     bool shuffle_status;
     int voteTotal;
     int candidateTotal;
+    int* voteVals;
+    std::vector<int> finalists;
+    int** votes;
   
-    int** STVProtocol(int** votes, string* candidateNames);
-    int** PluralityProtocol(int** votes, string* candidateNames);
-
+    int** shuffle();
+    int** STVProtocol(string* candidateNames);
+    int** PluralityProtocol(string* candidateNames);
+    int cointToss(int loserA, int loserB);
     void setCandidates(Candidates* candidates_, string* filenames);
     void setBallotBox(BallotBox* ballotBox_, string* filenames, int fileTotal);
     int** shuffle(BallotBox* ballotbox, int totalVotes, int totalCand);
-    int** BasicProtocol(Candidates* candidates_, Ballotbox* ballotBox_,int** votes);
-    void WinnerProtocol(int bnum, int** ballots, BallotBox* ballotBox, Candidates* candidates);
+    int** BasicProtocol(Candidates* candidates_, BallotBox* ballotBox_,int** votes);
+    //void WinnerProtocol(int bnum, int** ballots, BallotBox* ballotBox, Candidates* candidates);
+    void STVWinnerProtocol(int newWinner, string* candidateNames, int ivote);
     void LoserProtocol(int**ballots,BallotBox* ballotBox, Candidates* candidates);
-  
+    void STVLoserProtocol(string* candidateNames);
+    int setVoteVals(int* ballot);
+    void adjustVote(int* thisVote);
+    int findNewLoser(string* candidateNames, string newName);
 
 
 
