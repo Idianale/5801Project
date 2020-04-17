@@ -237,5 +237,13 @@ int** Election::PluralityProtocol(string* candidateNames){
 */
 
 int** Election::shuffle(){
-  return ballotBox->GetBallots(); //TO DO
+    random_device rd;
+    mt19937 g(rd());
+    int totalVotes = ballotBox->GetVoteTotal();
+    
+    // Shuffling our array
+    shuffle(ballotBox->GetBallots(),ballotBox->GetBallots() + totalvotes,
+        g);
+    
+    return ballotBox->GetBallots(); //Need to test with 
 }
