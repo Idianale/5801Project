@@ -1,4 +1,5 @@
 #include <stdio.h>      /* printf, scanf, puts, NULL */
+#include <iostream>
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
 
@@ -15,6 +16,7 @@
 
 
 Election::Election(bool shufflestatus_){
+  cout << "in election constructor"<<endl;
   shuffle_status = shufflestatus_;
 }
 
@@ -22,13 +24,13 @@ void Election::runElection(string* filenames, int fileSize,
                              int electionType, int seatNum){
   
   using namespace std;
-
   // create BallotBox values
   BallotBox* myBallotBox = new BallotBox(electionType);
   votes = myBallotBox->AddVotes(filenames, fileSize);
   ballotBox = myBallotBox;
+  seatNum_ = seatNum;
 
-  int tmp = myBallotBox->GetTotalColumns;
+  int tmp = myBallotBox->GetTotalColumns();
   string candidateNames[tmp];
   // create Candidate values
   Candidates* myCandidates = new Candidates();
@@ -46,52 +48,107 @@ void Election::runElection(string* filenames, int fileSize,
   }
   candidates = myCandidates;
 
-  int totalVotes = ballotBox->GetVoteTotal();
-  voteTotal = totalVotes;
-  int totalCand  = candidates->getAllCount();
-  candidateTotal = totalCand;
+  voteTotal = ballotBox->GetVoteTotal();
+  candidateTotal  = candidates->getAllCount();
   electionType_ = electionType;
-
   // Set Droop Quota
   droopCount = (voteTotal/(seatNum+1)) + 1;
-
   if(shuffle_status)
-    votes = shuffle(ballotBox,totalVotes, totalCand);
-  
+   // votes = shuffle(); //DEBUG, re-enable later
   int **results;
+
+  //CandidateBypass
+  candArr = new int[candidateTotal];
+  candVal = new int[candidateTotal];
+  for(int i = 0 ; i < candidateTotal ; i++){
+    candArr[i] = 0;
+    candVal[i] = 0;
+  }
+
   // STV Election Type
   if(electionType_==1){
     results = STVProtocol(candidateNames);
-
   }
-
   // Plurality Election Type
   else if(electionType_==2){
     results = PluralityProtocol(candidateNames);
   }
 }
 
+int Election::getTotalUndecided(){
+  int j=0;
+  for(int i = 0 ; i < candidateTotal ; i++){
+    if (candArr[i]==0){
+      // cout << "Candidate " << i << " is still in"<<endl;
+      j++;
+    }
+  }
+  return j;
+}
 
 int** Election::STVProtocol(string* candidateNames){
+  int loopCatcher = 0;
   voteVals = new int[voteTotal];
   for(int i = 0 ; i < voteTotal ; i++){
     voteVals[i] = -1; //Associated vote not set for any given candidate
   }
-  while(candidates->getTotalStillIn()!=0){
+    while(getTotalUndecided()>0&&loopCatcher<4){
+    cout << "there are " << getTotalUndecided() << " Candidates still in"<<endl;
     for(int bnum = 0 ; bnum < voteTotal ; bnum ++){
       if( voteVals[bnum]==-1){
-        int newVoteVal = setVoteVals(votes[bnum]);
+        int newVoteVal = setVoteVals(votes[bnum]); // newVoteVal is current vote's winning candidate (rank 1)
         voteVals[bnum] = newVoteVal;
-        candidates->candidateList[newVoteVal].incrementVote;
-        int voteCount = candidates->candidateList[newVoteVal].getVoteCount();
-        if(voteCount==droopCount)
+        candVal[newVoteVal]++; // inc local vote
+
+        Candidate* CNew;
+        int obnoxiousBypass = 0;
+
+        for(auto i = candidates->candidateList.begin(); i != candidates->candidateList.end(); i++){
+          CNew = &*i;
+          if(obnoxiousBypass!=newVoteVal)
+            obnoxiousBypass++;
+          else
+            break;
+        }
+        CNew->incrementVote();
+
+        if(candVal[newVoteVal]==droopCount)
         {
-          STVWinnerProtocol(newVoteVal, candidateNames, bnum);
+          cout << "we have a new winner" <<endl;
+          // STVWinnerProtocol(newVoteVal, candidateNames, bnum);
+          STVWinnerProtocolB(newVoteVal, candidateNames, bnum);
         }
       }
     }
-    if(candidates->getTotalStillIn()>0)
-      STVLoserProtocol(candidateNames);
+    if(getTotalUndecided()!=0&&loopCatcher < 4){
+      cout << "we have a new loser" << endl;
+      loopCatcher++;
+      // STVLoserProtocol(candidateNames);
+      STVLoserProtocolB(candidateNames);
+    }
+  }
+  int lastWin = 0;
+  for(int i = 0 ; i < candidateTotal ; i++){
+    if(candArr[i]>=lastWin){
+      lastWin = candArr[i];
+    }
+  }
+  for(int i = 0 ; i < candidateTotal ; i++){
+    if(candArr[i]<0){
+      candArr[i]=lastWin-candArr[i];
+    }
+  }
+  cout << "Election Complete"<<endl;
+  cout << "Candidate Ranking:"<<endl;
+  int win = 1;
+  for(int i = 0 ; i < seatNum_; i++){
+    cout << "Winner: ";
+    for(int i = 0 ; i < candidateTotal ; i++){
+      if(candArr[i]==win){
+        cout << candidateNames[i] << " with " << candVal[i] << " votes" << endl;
+        win++;
+      }
+    }
   }
 }
 
@@ -102,6 +159,35 @@ int** Election::STVProtocol(string* candidateNames){
        candidate, or any previous candidate finalists, as their first choice.
 
 */
+
+void Election::STVWinnerProtocolB(int newWinner, string* candidateNames, int ivote){
+  candidates->setCandidate(candidateNames[newWinner],candidates->undecided,candidates->winners);
+  finalists.push_back(newWinner);
+
+//bypass
+  int newWinVal = 0;
+  for(int i = 0 ; i < candidateTotal; i++)
+    if(candArr[i]>=newWinVal)
+      newWinVal=candArr[i];
+ newWinVal++;
+  candArr[newWinner] = newWinVal;
+
+  ivote++;
+  for(;ivote<voteTotal;ivote++){
+    bool voteAltered = false;
+    for(auto i = finalists.begin(); i != finalists.end() ; i++){
+      if(votes[ivote][*i]==1){
+        adjustVote(votes[ivote]);
+        voteVals[ivote] = -1;
+        voteAltered = true;
+      }
+    }
+    if(voteAltered) // reiterate over prior vote rankings from start
+      ivote--;
+  }
+}
+
+
 void Election::STVWinnerProtocol(int newWinner, string* candidateNames, int ivote){
   candidates->setCandidate(candidateNames[newWinner],candidates->undecided,candidates->winners);
   finalists.push_back(newWinner);
@@ -120,12 +206,56 @@ void Election::STVWinnerProtocol(int newWinner, string* candidateNames, int ivot
   }
 }
 
+bool Election::nonFinalist(int candVal){
+  return candArr[candVal]==0;
+}
+
+void Election::STVLoserProtocolB(string* candidateNames){
+  int lowVote = candVal[0];
+  int newLoss=0;
+  for(int i = 0 ; i < candidateTotal ; i++){
+    if(candVal[i]<=lowVote&&nonFinalist(i))
+    {lowVote = candVal[i];
+    newLoss = i;}
+  }
+  cout << "Latest Loser is "<< candidateNames[newLoss] <<" with "<<candVal[newLoss] <<" votes" <<endl;
+   for(int i = 0 ; i < candidateTotal ; i++){
+     if(candArr[i]<0){
+       candArr[i]--;
+     }
+   }
+   candArr[newLoss] = -1;
+   cout << "there Are now " << getTotalUndecided() << " candidates remaining"<<endl;
+
+  finalists.push_back(newLoss);
+  if(getTotalUndecided()){
+    for(int bnum = 0 ; bnum < voteTotal ; bnum++){
+      bool adjustedVote = false;
+      for(auto i = finalists.begin(); i < finalists.end(); i++){
+        if(votes[bnum][*i]==1){
+          // cout << "vote " << bnum << " reads " << votes[bnum][0] << " " << votes[bnum][1]<<endl;
+          adjustVote(votes[bnum]);
+          // cout << "vote " << bnum << " reads " << votes[bnum][0] << " " << votes[bnum][1]<<endl;
+          voteVals[bnum] = -1;
+          adjustedVote = true;
+        }
+        if(adjustedVote)
+          bnum--;
+      }
+    }
+  }
+}
+
+
+
+
+
 void Election::STVLoserProtocol(string* candidateNames){
   int lowestvote = candidates->undecided[0].getVoteCount();
   int newLoser = findNewLoser(candidateNames, candidates->undecided[0].getName());
-  for(auto i = candidates->undecided.begin(); i < candidates->undecided.end()){
+  for(auto i = candidates->undecided.begin(); i < candidates->undecided.end();i++){
     Candidate c = *i;
-    int newVoteCount = c.getVoteCount;
+    int newVoteCount = c.getVoteCount();
     if(newVoteCount < lowestvote){
       lowestvote = newVoteCount;
       newLoser = findNewLoser(candidateNames, c.getName());
@@ -150,16 +280,16 @@ void Election::STVLoserProtocol(string* candidateNames){
   }
 }
 
-int Election::coinToss(int loserA, int loserB){
+int Election::coinToss(int candidateA, int candidateB){
   //TO DO 
-  return loserA;
+  return candidateA;
 }
 
 int Election::findNewLoser(string* candidateNames, string newName){
   int j = 0;
   for(auto i = candidates->candidateList.begin(); i < candidates->candidateList.end(); i++){
     Candidate c = *i;
-    if(c.getName==newName)
+    if(c.getName()==newName)
       return j;
     else
       j++;
@@ -226,6 +356,47 @@ int** Election::PluralityProtocol(string* candidateNames){
 }
 
 
+
+
+
+//Test Functions
+
+
+// int Election::findLowestVoteB(){
+//   int lowest = 0;
+//   int votTot = candidateBypassVoteCounts[0];
+//   for(int i = 0 ; i < candidateTotal ; i++){
+//     if(candidateVoteCounts[i]<=votTot){
+//       lowest = i;
+//       votTot = candidateVoteCounts[i];
+//     }
+//   }
+//   return lowest;
+
+// }
+void Election::newestLoserB(int loser){;
+  for(int i = 0 ; i < candidateTotal ; i++){
+    if(candidateBypassLoser[i]>0)
+      candidateBypassLoser[i]++;
+  }
+  candidateBypassLoser[loser] = 1;
+  candidateBypassUndecided[loser]=0;
+
+}
+int main(){
+  cout << "\nin main\n";
+  Election myElection(0);
+  string myString[1] = {"example_election_file.csv"};
+  cout << "about to run election" <<endl;
+  myElection.runElection(myString, 1, 1, 1);
+}
+
+
+
+
+
+
+
 /*
   important function values:
     votes: 2D array containing votes,in the form 
@@ -236,14 +407,13 @@ int** Election::PluralityProtocol(string* candidateNames){
     voteTotal: int, number of votes, number of rows in votes array
 */
 
-int** Election::shuffle(){
-    random_device rd;
-    mt19937 g(rd());
-    int totalVotes = ballotBox->GetVoteTotal();
+// int** Election::shuffle(){
+//     random_device rd;
+//     mt19937 g(rd());
+//     int totalVotes = ballotBox->GetVoteTotal();
     
-    // Shuffling our array
-    shuffle(ballotBox->GetBallots(),ballotBox->GetBallots() + totalvotes,
-        g);
+//     // Shuffling our array
+//     shuffle(ballotBox->GetBallots(),ballotBox->GetBallots() + totalVotes, g);
     
-    return ballotBox->GetBallots(); //Need to test with 
-}
+//     return ballotBox->GetBallots(); //Need to test with 
+// }
