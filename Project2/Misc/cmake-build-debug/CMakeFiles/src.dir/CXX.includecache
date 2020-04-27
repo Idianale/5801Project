@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/m0narch/Documents/Code/repo-Team16/src/Candidate.h
+string
+-
+
+/home/m0narch/Documents/Code/repo-Team16/src/Candidates.cpp
+Candidates.h
+/home/m0narch/Documents/Code/repo-Team16/src/Candidates.h
+
+/home/m0narch/Documents/Code/repo-Team16/src/Candidates.h
+string
+-
+vector
+-
+algorithm
+-
+Candidate.h
+/home/m0narch/Documents/Code/repo-Team16/src/Candidate.h
+

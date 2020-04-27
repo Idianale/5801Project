@@ -1,0 +1,20 @@
+This is the read me for project1 waterfall STV.
+
+src ---
+
+We haven't been able to get our code to work but with unit testing we have gotten most of each of our classes completed. (Driver, Reporter, Candidates, Candidate classes tested and completed)
+Our main issue for completetion has come from our Election class which is having issues adding up votes to our candidate class.
+
+To run the file -- use the cmake shown or download all .cpp and .h files in src folder and run the main.cpp - this will start the program.
+
+Testing ----
+
+Testing has been completed for 4 of the 5 classes. Each class has each of its methods tested and data files are given to show how it was done.
+The template for documentation of testing is also in this folder
+
+Documentation --
+
+Doxygen used for documenatation
+
+
+
