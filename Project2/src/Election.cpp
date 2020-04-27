@@ -44,6 +44,11 @@ void Election::runElection(string* filenames, int fileSize,
     // create BallotBox values
     BallotBox* myBallotBox = new BallotBox(electionType);
     votes = myBallotBox->AddVotes(filenames, fileSize);
+    if (votes == NULL)
+    {
+        cout << "Test does not have at least 50% valid ballots";
+        return;
+    }
     ballotBox = myBallotBox;
     seatNum_ = seatNum;
     int tmp = myBallotBox->GetTotalColumns();
@@ -165,10 +170,11 @@ int** Election::STVProtocol(string* candidateNames) {
             if (candArr[i] == win) {
                 cout << candidateNames[i] << " with " << candVal[i] << " votes" << endl;
                 win++;
+                i = candidateTotal;
             }
             else
             {
-                cout << "Loser: " << candidateNames[i] << " with " << candVal[i] << " votes" << endl;
+       //         cout << "Loser: " << candidateNames[i] << " with " << candVal[i] << " votes" << endl;
             }
         }
     }
@@ -257,15 +263,18 @@ void Election::STVLoserProtocolB(string* candidateNames) {
         for (int bnum = 0; bnum < voteTotal; bnum++) {
             bool adjustedVote = false;
             for (auto i = finalists.begin(); i < finalists.end(); i++) {
-                if (votes[bnum][*i] == 1) {
-                    // cout << "vote " << bnum << " reads " << votes[bnum][0] << " " << votes[bnum][1]<<endl;
-                    adjustVote(votes[bnum]);
-                    // cout << "vote " << bnum << " reads " << votes[bnum][0] << " " << votes[bnum][1]<<endl;
-                    voteVals[bnum] = -1;
-                    adjustedVote = true;
+                if (bnum >= 0) {
+                    if (votes[bnum][*i] == 1) {
+                        //       cout << "vote " << bnum << " reads " << votes[bnum][0] << " " << votes[bnum][1]<<endl;
+                        adjustVote(votes[bnum]);
+                        //      cout << "vote " << bnum << " reads " << votes[bnum][0] << " " << votes[bnum][1]<<endl;
+                        voteVals[bnum] = -1;
+                        adjustedVote = true;
+                    }
+                    if (adjustedVote){
+                        bnum--;
+                        }
                 }
-                if (adjustedVote)
-                    bnum--;
             }
         }
     }
@@ -273,7 +282,7 @@ void Election::STVLoserProtocolB(string* candidateNames) {
 
 
 
-
+/*
 
 void Election::STVLoserProtocol(string* candidateNames) {
     int lowestvote = candidates->undecided[0].getVoteCount();
@@ -304,6 +313,7 @@ void Election::STVLoserProtocol(string* candidateNames) {
         }
     }
 }
+*/
 
 int Election::coinToss(int candidateA, int candidateB) {
     int flip;
@@ -372,14 +382,14 @@ int** Election::PluralityProtocol(string* candidateNames) {
     {
         votecounts[i] = 0;
     }
-  
+
     cout << "Vote Total: " << voteTotal << endl;
     for (int i = 0; i < voteTotal; i++) {
         for (int j = 0; j < candidateTotal; j++) {
-            cout << votes[i][j] << "  " << i << "  " << j <<endl;
+            cout << votes[i][j] << "  " << i << "  " << j << endl;
             if (votes[i][j] == 1) {
                 votecounts[j] = votecounts[j] + 1;
-            //    candidates->candidateList[j].incrementVote(); ignore candidate class
+                //    candidates->candidateList[j].incrementVote(); ignore candidate class
             }
         }
     }
@@ -388,6 +398,7 @@ int** Election::PluralityProtocol(string* candidateNames) {
     cout << votecounts[1] << endl;
     cout << votecounts[2] << endl;
     cout << votecounts[3] << endl;
+    if (seatNum_ == 1) {
     for (int i = 1; i < candidateTotal; i++) {
         if (votecounts[i] > votecounts[winner])
             winner = i;
@@ -395,6 +406,13 @@ int** Election::PluralityProtocol(string* candidateNames) {
             winner = coinToss(i, winner);
     }
     std::cout << "the winner is " << candidateNames[winner] << std::endl;
+    }
+    else
+    {
+        //Multiple Seats
+
+    }
+
     return votes;
 }
 
@@ -450,7 +468,7 @@ int main() {
     //C:\Users\Adam\Downloads\example_election_file.csv
     cin >> myString[0];
     cout << "about to run election" << endl;
-    myElection.runElection(myString, 1, 2, 1);
+    myElection.runElection(myString, 1, 1, 1);
 }
 
 

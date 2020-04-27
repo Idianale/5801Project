@@ -70,9 +70,12 @@ int** BallotBox::AddVotes(string* filenames, int fileTotal) {
     // Step 3: create a 2d array containing vote values
     cout << "about to create new int pointer table. total votes is " << totalVotes << endl;
     int** voteTable = new int* [totalVotes];
+    int* InvalidBallot = new int[totalVotes];
+
     cout << "table created\n";
     int it = 0; //global iterator, persistent between files
     // iterate over all files:
+    int temptotal = totalVotes;
     for (int i = 0; i < fileTotal; i++) {
         fstream fin(filenames[i]);
         std::string temp;
@@ -110,10 +113,11 @@ int** BallotBox::AddVotes(string* filenames, int fileTotal) {
                 //Deletes the last row on the voteTable array to make sure no rows are left blank
                 //Set total votes to one less
                 if (emptycount >= (colTotal / 2) && (electionType == 1)) {
-                   
-                    delete[] voteTable[totalVotes-1];
-                    totalVotes = totalVotes - 1;
+                    InvalidBallot[it] = 1;
                     invalidVotes = invalidVotes + 1;
+                    cout << "Invalid Ballot found in row: " << it << endl;
+                    voteTable[it] = x;
+                    it++;
                 }
                 else{
                     voteTable[it] = x;
@@ -123,7 +127,7 @@ int** BallotBox::AddVotes(string* filenames, int fileTotal) {
             else
             {
                 // invalid vote is a blank vote
-                invalidVotes = invalidVotes + 1;
+          //      invalidVotes = invalidVotes + 1;
             }
         }
         fin.close();
@@ -133,6 +137,37 @@ int** BallotBox::AddVotes(string* filenames, int fileTotal) {
         ballots = NULL;
     }
     else {
+        //Delete any invalid Ballots
+        int totalgone = 0;
+        for (int j = 0; j < totalVotes; j++) {
+            if (InvalidBallot[j] == 1) {
+                
+                int rowToDel = (j-totalgone);
+                delete[] voteTable[rowToDel];
+                int** tmp = new int* [totalVotes - 1];
+                int tmpI = 0;
+                for (int i = 0; i < totalVotes; ++i)
+                    if (i != rowToDel)
+                        tmp[tmpI++] = voteTable[i];
+                delete[] voteTable;
+                voteTable = tmp;
+                voteTotal = voteTotal - 1;
+                cout << "Row: " << rowToDel << endl;
+                cout << voteTotal << endl;
+                totalgone = totalgone + 1;
+            }
+
+        }
+        for (int i = 0; i < voteTotal; i++)
+        {
+            for (int j = 0; j < colTotal; j++)
+            {
+                cout << voteTable[i][j] << "   ";
+
+            }
+            cout << endl;
+        }
+
         ballots = voteTable;
         return voteTable;
     }
