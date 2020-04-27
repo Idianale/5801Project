@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="src" targetName="src" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d9d6f2e3-c3e8-43a4-906a-5ea9b67292c3" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CMakeLists.txt" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Patrick Perez" />
+      </list>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="UPDATE_TYPE" value="MERGE" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1ZizqDeyJOZdOAXbG7SV2Pm14pO" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../DateConverter_withTests" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Google_tests/lib" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Google_tests" />
+      <recent name="$PROJECT_DIR$/Tests" />
+      <recent name="$PROJECT_DIR$/Tests/lib" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Google Test.All in src">
+    <configuration name="All in src" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" nameIsGenerated="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="src" TARGET_NAME="src" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="src" RUN_TARGET_NAME="src" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="src" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="src" TARGET_NAME="src" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="src" RUN_TARGET_NAME="src">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.src" />
+      <item itemvalue="Google Test.All in src" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d9d6f2e3-c3e8-43a4-906a-5ea9b67292c3" name="Default Changelist" comment="" />
+      <created>1585336890084</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1585336890084</updated>
+      <workItem from="1585336891508" duration="2905000" />
+      <workItem from="1585594310765" duration="3610000" />
+      <workItem from="1585760234800" duration="24619000" />
+    </task>
+    <task id="LOCAL-00001" summary="Add files via upload&#10;&#10;All new files includes in to the src folder.">
+      <created>1585597325681</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1585597325681</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Add files via upload&#10;&#10;All new files includes in to the src folder.">
+      <created>1585768325173</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1585768325173</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Add files via upload&#10;&#10;All new files includes in to the src folder.">
+      <created>1585871003848</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1585871003848</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Add files via upload&#10;&#10;All new files includes in to the src folder.">
+      <created>1585872097052</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1585872097052</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Add files via upload&#10;&#10;All new files includes in to the src folder.">
+      <created>1585883588096</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1585883588096</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Merge remote-tracking branch 'refs/remotes/origin/master'&#10;&#10;Conflicts:&#10;&#9;src/Candidates.h">
+      <created>1585884418404</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1585884418404</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Merge remote-tracking branch 'refs/remotes/origin/master'&#10;&#10;Conflicts:&#10;&#9;src/Candidates.h">
+      <created>1585884682726</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1585884682726</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Merge remote-tracking branch 'refs/remotes/origin/master'&#10;&#10;Conflicts:&#10;&#9;src/Candidates.h">
+      <created>1585884724898</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1585884724898</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Merge remote-tracking branch 'refs/remotes/origin/master'&#10;&#10;Conflicts:&#10;&#9;src/Candidates.h">
+      <created>1585887998332</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1585887998332</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Add files via upload&#10;&#10;All new files includes in to the src folder." />
+    <MESSAGE value="Merge remote-tracking branch 'refs/remotes/origin/master'&#10;&#10;Conflicts:&#10;&#9;src/Candidates.h" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'refs/remotes/origin/master'&#10;&#10;Conflicts:&#10;&#9;src/Candidates.h" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1537" y="54" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585857762846">
+      <screen x="1366" y="0" width="1360" height="768" />
+    </state>
+    <state x="1537" y="54" key="#com.intellij.execution.impl.EditConfigurationsDialog/1366.0.1360.768/0.27.1366.741@1366.0.1360.768" timestamp="1585857762846" />
+    <state x="1791" y="201" width="566" height="390" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1585841983775">
+      <screen x="1366" y="0" width="1360" height="768" />
+    </state>
+    <state x="1791" y="201" width="566" height="390" key="#com.intellij.fileTypes.FileTypeChooser/1366.0.1360.768/0.27.1366.741@1366.0.1360.768" timestamp="1585841983775" />
+    <state x="1613" y="27" width="857" height="741" key="CommitChangelistDialog2" timestamp="1585887998126">
+      <screen x="1366" y="0" width="1360" height="768" />
+    </state>
+    <state x="1613" y="27" width="857" height="741" key="CommitChangelistDialog2/1366.0.1360.768/0.27.1366.741@1366.0.1360.768" timestamp="1585887998126" />
+    <state x="316" y="27" width="865" height="873" key="CommitChangelistDialog2/67.27.1373.873/1440.0.1360.768@67.27.1373.873" timestamp="1585337020944" />
+    <state x="1539" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1585857882699">
+      <screen x="1366" y="0" width="1360" height="768" />
+    </state>
+    <state x="1539" y="154" width="424" height="484" key="FileChooserDialogImpl/1366.0.1360.768/0.27.1366.741@1366.0.1360.768" timestamp="1585857882699" />
+    <state width="1247" height="219" key="GridCell.Tab.0.bottom" timestamp="1586194959617">
+      <screen x="1366" y="0" width="1360" height="768" />
+    </state>
+    <state width="1247" height="219" key="GridCell.Tab.0.bottom/1366.0.1360.768/0.27.1366.741@1366.0.1360.768" timestamp="1586194959617" />
+    <state width="1247" height="219" key="GridCell.Tab.0.center" timestamp="1586194959616">
+      <screen x="1366" y="0" width="1360" height="768" />
+    </state>
+    <state width="1247" height="219" key="GridCell.Tab.0.center/1366.0.1360.768/0.27.1366.741@1366.0.1360.768" timestamp="1586194959616" />
+    <state width="1247" height="219" key="GridCell.Tab.0.left" timestamp="1586194959616">
+      <screen x="1366" y="0" width="1360" height="768" />
+    </state>
+    <state width="1247" height="219" key="GridCell.Tab.0.left/1366.0.1360.768/0.27.1366.741@1366.0.1360.768" timestamp="1586194959616" />
+    <state width="1247" height="219" key="GridCell.Tab.0.right" timestamp="1586194959617">
+      <screen x="1366" y="0" width="1360" height="768" />
+    </state>
+    <state width="1247" height="219" key="GridCell.Tab.0.right/1366.0.1360.768/0.27.1366.741@1366.0.1360.768" timestamp="1586194959617" />
+    <state width="1247" height="219" key="GridCell.Tab.1.bottom" timestamp="1586194959617">
+      <screen x="1366" y="0" width="1360" height="768" />
+    </state>
+    <state width="1247" height="219" key="GridCell.Tab.1.bottom/1366.0.1360.768/0.27.1366.741@1366.0.1360.768" timestamp="1586194959617" />
+    <state width="1247" height="219" key="GridCell.Tab.1.center" timestamp="1586194959617">
+      <screen x="1366" y="0" width="1360" height="768" />
+    </state>
+    <state width="1247" height="219" key="GridCell.Tab.1.center/1366.0.1360.768/0.27.1366.741@1366.0.1360.768" timestamp="1586194959617" />
+    <state width="1247" height="219" key="GridCell.Tab.1.left" timestamp="1586194959617">
+      <screen x="1366" y="0" width="1360" height="768" />
+    </state>
+    <state width="1247" height="219" key="GridCell.Tab.1.left/1366.0.1360.768/0.27.1366.741@1366.0.1360.768" timestamp="1586194959617" />
+    <state width="1247" height="219" key="GridCell.Tab.1.right" timestamp="1586194959617">
+      <screen x="1366" y="0" width="1360" height="768" />
+    </state>
+    <state width="1247" height="219" key="GridCell.Tab.1.right/1366.0.1360.768/0.27.1366.741@1366.0.1360.768" timestamp="1586194959617" />
+    <state x="1784" y="114" width="580" height="564" key="MultipleFileMergeDialog" timestamp="1585883756529">
+      <screen x="1366" y="0" width="1360" height="768" />
+    </state>
+    <state x="1784" y="114" width="580" height="564" key="MultipleFileMergeDialog/1366.0.1360.768/0.27.1366.741@1366.0.1360.768" timestamp="1585883756529" />
+    <state x="67" y="243" key="com.intellij.ide.util.TipDialog" timestamp="1585760245205">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="67" y="243" key="com.intellij.ide.util.TipDialog/1366.0.1360.768/0.27.1366.741@0.27.1366.741" timestamp="1585760245205" />
+    <state x="1433" y="224" key="com.intellij.ide.util.TipDialog/1366.0.1360.768/0.27.1366.741@1366.0.1360.768" timestamp="1585594309180" />
+    <state x="1847" y="316" width="464" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585883752134">
+      <screen x="1366" y="0" width="1360" height="768" />
+    </state>
+    <state x="1847" y="316" width="464" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1366.0.1360.768/0.27.1366.741@1366.0.1360.768" timestamp="1585883752134" />
+    <state x="1742" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1585887922485">
+      <screen x="1366" y="0" width="1360" height="768" />
+    </state>
+    <state x="1742" y="89" width="672" height="678" key="search.everywhere.popup/1366.0.1360.768/0.27.1366.741@1366.0.1360.768" timestamp="1585887922485" />
+  </component>
+</project>
