@@ -306,8 +306,16 @@ void Election::STVLoserProtocol(string* candidateNames) {
 }
 
 int Election::coinToss(int candidateA, int candidateB) {
-    //TO DO 
-    return candidateA;
+    int flip;
+    flip = rand() % 2 + 1;// assign random numbers
+    if (flip == 1) {
+        return candidateA;
+    }
+    else {
+        return candidateB;
+    }
+ 
+    
 }
 
 int Election::findNewLoser(string* candidateNames, string newName) {
@@ -364,20 +372,27 @@ int** Election::PluralityProtocol(string* candidateNames) {
     {
         votecounts[i] = 0;
     }
-    for (int i = 0; i < candidateTotal; i++) {
-        for (int j = 0; j < voteTotal; j++) {
-            if (votes[i][j] != 0) {
-                votecounts[i] += 1;
+  
+    cout << "Vote Total: " << voteTotal << endl;
+    for (int i = 0; i < voteTotal; i++) {
+        for (int j = 0; j < candidateTotal; j++) {
+            cout << votes[i][j] << "  " << i << "  " << j <<endl;
+            if (votes[i][j] == 1) {
+                votecounts[j] = votecounts[j] + 1;
             //    candidates->candidateList[j].incrementVote(); ignore candidate class
             }
         }
     }
     int winner = 0;
-    for (int i = 0; i < candidateTotal; i++) {
+    cout << votecounts[0] << endl;
+    cout << votecounts[1] << endl;
+    cout << votecounts[2] << endl;
+    cout << votecounts[3] << endl;
+    for (int i = 1; i < candidateTotal; i++) {
         if (votecounts[i] > votecounts[winner])
             winner = i;
         else if (votecounts[i] == votecounts[winner])
-            winner = coinToss(votecounts[i], votecounts[winner]);
+            winner = coinToss(i, winner);
     }
     std::cout << "the winner is " << candidateNames[winner] << std::endl;
     return votes;
@@ -427,7 +442,8 @@ int** Election::shuffleelection() {
 
 int main() {
 
-
+    //Used for coin toss
+    srand(static_cast<int>(time(0)));
     cout << "\nin main\n";
     Election myElection(0);
     string myString[1];
