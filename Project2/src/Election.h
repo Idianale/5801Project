@@ -1,3 +1,4 @@
+#pragma once
 #ifndef SRC_ELECTION_H
 #define SRC_ELECTION_H
 
@@ -6,17 +7,17 @@
 
 class Election {
 
-  public:
-//   virtual void runElection() = 0;
+public:
+    //   virtual void runElection() = 0;
     Election(bool shufflestatus_);
     void runElection(string* filenames, int fileSize, int electionType, int seatNum);
-    int GetVoteTotal() {return voteTotal;}
+    int GetVoteTotal() { return voteTotal; }
 
-  private: 
+private:
     int droopCount;
     std::string testType;
-    BallotBox * ballotBox;
-    Candidates * candidates;
+    BallotBox* ballotBox;
+    Candidates* candidates;
     void setCandidates(BallotBox* box);
     int electionType_; // 1 = STV, 2 = Plurality
     int** results;
@@ -26,18 +27,18 @@ class Election {
     int* voteVals;
     std::vector<int> finalists;
     int** votes;
-  
-    int** shuffle();
+
+    int** shuffleelection();
     int** STVProtocol(string* candidateNames);
     int** PluralityProtocol(string* candidateNames);
     int coinToss(int candidateA, int candidateB);
     void setCandidates(Candidates* candidates_, string* filenames);
     void setBallotBox(BallotBox* ballotBox_, string* filenames, int fileTotal);
     // int** shuffle(BallotBox* ballotbox, int totalVotes, int totalCand);
-    int** BasicProtocol(Candidates* candidates_, BallotBox* ballotBox_,int** votes);
+    int** BasicProtocol(Candidates* candidates_, BallotBox* ballotBox_, int** votes);
     //void WinnerProtocol(int bnum, int** ballots, BallotBox* ballotBox, Candidates* candidates);
     void STVWinnerProtocol(int newWinner, string* candidateNames, int ivote);
-    void LoserProtocol(int**ballots,BallotBox* ballotBox, Candidates* candidates);
+    void LoserProtocol(int** ballots, BallotBox* ballotBox, Candidates* candidates);
     void STVLoserProtocol(string* candidateNames);
     int setVoteVals(int* ballot);
     void adjustVote(int* thisVote);
