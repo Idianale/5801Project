@@ -71,5 +71,6 @@ int Candidates::findLowestVote() {
             min = candidateList[i].getVoteCount();
         }
     }
+    return min;
 }
 

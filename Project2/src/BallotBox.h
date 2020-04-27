@@ -1,3 +1,4 @@
+#pragma once
 #ifndef SRC_BALLOTBOX_H
 #define SRC_BALLOXBOX_H
 #include <string>
@@ -5,10 +6,12 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <array>
+
 //fstream or ifstream?
 using namespace std;
 class BallotBox {
-  public:
+public:
     BallotBox();
     BallotBox(int electionType_);
     // BallotBox(string* filenames,int fileTotal, int electionType_)
@@ -17,11 +20,11 @@ class BallotBox {
     int** GetBallots();
     int** AddVotes(string* filenames, int fileTotal);
 
-  private:
-    int colTotal;  
-    int electionType; 
+private:
+    int colTotal;
+    int electionType;
     int voteTotal;
-    int ** ballots;
+    int** ballots;
 };
 
 

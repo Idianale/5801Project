@@ -41,12 +41,14 @@ int** BallotBox::AddVotes(string* filenames, int fileTotal) {
         if (!fin.is_open())
         {
             cout << "Error in BallotBox.cpp; csv file is not found\n";
+            cout << filenames[i];
+            return NULL;
         }
         int temp =
             count(std::istreambuf_iterator<char>(fin),
                 std::istreambuf_iterator<char>(), '\n');
         cout << "temp votes is " << temp << endl;
-        totalVotes += (temp - 1);
+        totalVotes += (temp);
         fin.close();
     }
     // std::cout << "Total votes is " << totalVotes << endl; // debug

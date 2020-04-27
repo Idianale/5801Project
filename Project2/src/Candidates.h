@@ -1,3 +1,4 @@
+#pragma once
 //
 // Created by m0narch on 3/27/20.
 //
@@ -22,7 +23,7 @@ public:
     std::vector<Candidate> losers;
     std::vector<Candidate> undecided;
     std::vector<Candidate> candidateList;
-    enum Status_Type{
+    enum Status_Type {
         Undecided,
         Winner,
         Loser,
@@ -103,7 +104,7 @@ public:
      * addCandidate
      * Add candidate object to undecided list
      */
-    //Add candidate to undecided
+     //Add candidate to undecided
     void addCandidate(std::string);
 
     /***
@@ -114,7 +115,7 @@ public:
      *
      * move candidate from undecided list to another list
      */
-    // Change list that candidate is in
+     // Change list that candidate is in
     void setCandidate(std::string candidateName, std::vector<Candidate> moveFromList, std::vector<Candidate>moveToList);
 
     /***
