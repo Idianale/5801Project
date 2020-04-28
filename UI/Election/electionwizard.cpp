@@ -1,5 +1,6 @@
 #include <QtWidgets>
-
+#include <QDebug>
+#include <string>
 #include "electionwizard.h"
 
 Electionwizard::Electionwizard(QWidget *parent)
@@ -34,8 +35,8 @@ RegistrationPage::RegistrationPage(QWidget *parent)
     electionTypeLabel = new QLabel(tr("Election Type"));
     electionTypeEdit = new QComboBox;
 
-    electionTypeEdit->addItem(("Plurarlity"));
     electionTypeEdit->addItem(("STV"));
+    electionTypeEdit->addItem(("PLURALITY"));
 
     seatNumbersLabel = new QLabel(tr("Number of Seats"));
     seatsLineEdit = new QLineEdit;
@@ -45,6 +46,12 @@ RegistrationPage::RegistrationPage(QWidget *parent)
     ballotFiles = new QTextEdit;
 
     runElectionButton = new QPushButton(tr("Run Election"));
+    connect(runElectionButton, SIGNAL(clicked()), this, SLOT(showElectionParams()));
+
+    registerField("electionType", electionTypeEdit);
+    registerField("seatNumbers", seatsLineEdit);
+    registerField("ballotAmounts", ballotFilesNumberEdits);
+    registerField("ballotFileNames", ballotFiles);
 
     QGridLayout *layout = new QGridLayout;
     layout->addWidget(electionTypeLabel, 0, 0);
@@ -57,6 +64,32 @@ RegistrationPage::RegistrationPage(QWidget *parent)
     layout->addWidget(runElectionButton, 4,0);
     setLayout(layout);
 }
+
+void RegistrationPage::showElectionParams(){
+    int selectedElection = (field("electionType").toInt())+1;
+    int seatNumbers = field("seatNumbers").toInt();
+    int ballotAmount = field("ballotAmounts").toInt();
+    QString ballots = field("ballotFileNames").toString();
+    QStringList ballotList = {""};//ballots.split("\n");
+    qDebug() << ballots << "\n";
+    qDebug() << ballotList << "\n";
+    qDebug() << "QSTRING LIST SIZE: " << ballotList.size() << "\n";
+    std::string* ballotNames = new std::string[ballotAmount];
+
+    for (int i = 0; i < ballotAmount; i++) {
+        ballotNames[i] = ballotList.at(i).toLocal8Bit().constData();
+    }
+
+
+    qDebug() << "Election Type:" << selectedElection << "\n";
+    qDebug() << "Seat Numbers:" << seatNumbers << "\n";
+    qDebug() << "Number of ballots: " << ballotAmount << "\n";
+    for (int i = 0; i < ballotAmount; i++) {
+        qDebug() << QString::fromStdString(ballotNames[i]) << "\n";
+    }
+}
+
+
 
 CreateReportPage::CreateReportPage(QWidget *parent)
     : QWizardPage(parent)

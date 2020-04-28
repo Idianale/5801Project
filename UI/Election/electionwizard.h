@@ -37,6 +37,9 @@ class RegistrationPage : public QWizardPage
 public:
     RegistrationPage(QWidget *parent = nullptr);
 
+public slots:
+    void showElectionParams();
+
 private:
     QLabel *electionTypeLabel;
     QComboBox *electionTypeEdit;
