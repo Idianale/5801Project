@@ -1,0 +1,10 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/m0narch/Documents/Code/repo-Team16/Project2/src/cmake-build-debug/electionSrc_autogen/mocs_compilation.cpp
+
