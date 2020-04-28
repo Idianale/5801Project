@@ -2,6 +2,16 @@
 #include <QDebug>
 #include <string>
 #include "electionwizard.h"
+#include <stdio.h>      /* printf, scanf, puts, NULL */
+#include <iostream>
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>       /* time */
+#include <random>
+#include <fstream>
+
+
+#include "Election.h"
+#include "BallotBox.h"
 
 Electionwizard::Electionwizard(QWidget *parent)
     :QWizard(parent)
@@ -80,6 +90,34 @@ void RegistrationPage::showElectionParams(){
         ballotNames[i] = ballotList.at(i).toLocal8Bit().constData();
     }
 
+    // MAIN FROM ALGORITHM
+
+
+    std::pair<std::string, std::string> textwrite;
+    srand(static_cast<int>(time(0)));//Used for coin toss
+    string auditElection;
+    string resultsElection;
+
+    Election myElection(1);
+
+    textwrite = myElection.runElection(ballotNames, ballotAmount, selectedElection, seatNumbers);
+
+    auditElection = textwrite.second;
+    resultsElection = textwrite.first;
+
+
+    ofstream Audit("Result_Audit.txt");
+    if (Audit.is_open())
+    {
+        Audit << "Results\n\n";
+        Audit << resultsElection;
+        Audit << "\n\nAudit\n\n";
+        Audit << auditElection;
+
+        Audit.close();
+    }
+
+    //DEBUGGING
 
     qDebug() << "Election Type:" << selectedElection << "\n";
     qDebug() << "Seat Numbers:" << seatNumbers << "\n";
