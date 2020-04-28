@@ -1,20 +1,22 @@
-This is the read me for project2 agile STV.
+This is the read me for project2 agile STV program.
 
 src ---
 
-We haven't been able to get our code to work but with unit testing we have gotten most of each of our classes completed. (Driver, Reporter, Candidates, Candidate classes tested and completed)
-Our main issue for completetion has come from our Election class which is having issues adding up votes to our candidate class.
+All of our code for the STV and Plurality Algothrims (BallotBox, Candidates, Election) are working currently. 
+Testing has been done but there still might be one to two edge cases left, will add to Buglist that is due next week with what we find
 
-To run the file -- use the cmake shown or download all .cpp and .h files in src folder and run the main.cpp - this will start the program.
+GUI also works as intended and we are able to grab all of the files we need. We didnt have time to fully implement the help screen so that is the next step for the new sprint.
+We also can't find out how to fully implement the GUI to the election algorthim so having these two parts of our system mesh is still something to work on.
 
 Testing ----
 
-Testing has been completed for 4 of the 5 classes. Each class has each of its methods tested and data files are given to show how it was done.
-The template for documentation of testing is also in this folder
+Testing was done as we went along, all test files are currently within our google drive and need to be organized and written up to for Github next week.
 
 Documentation --
 
-Doxygen used for documenatation
+Doxygen used for documenatation -- comments have been made in the code.
+
+We will also have adiditonal documentation for our testing next week.
 
 
 
