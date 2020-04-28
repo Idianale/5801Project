@@ -69,8 +69,8 @@ void RegistrationPage::showElectionParams(){
     int selectedElection = (field("electionType").toInt())+1;
     int seatNumbers = field("seatNumbers").toInt();
     int ballotAmount = field("ballotAmounts").toInt();
-    QString ballots = field("ballotFileNames").toString();
-    QStringList ballotList = {""};//ballots.split("\n");
+    QString ballots = ballotFiles->toPlainText();
+    QStringList ballotList = ballots.split("\n");
     qDebug() << ballots << "\n";
     qDebug() << ballotList << "\n";
     qDebug() << "QSTRING LIST SIZE: " << ballotList.size() << "\n";
