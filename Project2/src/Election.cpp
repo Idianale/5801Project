@@ -3,6 +3,9 @@
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
 #include <random>
+#include <fstream>
+#include <string>
+
 #include "Election.h"
 #include "BallotBox.h"
 #include "Candidates.h"
@@ -15,7 +18,7 @@
 
 
 Election::Election(bool shufflestatus_) {
-    cout << "in election constructor" << endl;
+    cout << "Election being initilized" << endl;
     shuffle_status = shufflestatus_;
     ballotBox = NULL;
     candArr = NULL;
@@ -34,10 +37,11 @@ Election::Election(bool shufflestatus_) {
     voteTotal = 0;
     voteVals = 0;
     votes = NULL;
-    
+    Audit = "";
+    TextResults = "";
 }
 
-void Election::runElection(string* filenames, int fileSize,
+std::pair<std::string,std::string> Election::runElection(string* filenames, int fileSize,
     int electionType, int seatNum) {
 
     using namespace std;
@@ -46,8 +50,8 @@ void Election::runElection(string* filenames, int fileSize,
     votes = myBallotBox->AddVotes(filenames, fileSize);
     if (votes == NULL)
     {
-        cout << "Test does not have at least 50% valid ballots";
-        return;
+      //  string noTest[2] = { "Test does not have at least 50% valid ballots -- no election was run" ,"" };
+        return std::make_pair("Test does not have at least 50% valid ballots -- no election was run", "");
     }
     ballotBox = myBallotBox;
     seatNum_ = seatNum;
@@ -71,10 +75,16 @@ void Election::runElection(string* filenames, int fileSize,
 
     voteTotal = ballotBox->GetVoteTotal();
     candidateTotal = candidates->getAllCount();
+    if (candidateTotal < seatNum || seatNum < 0)
+    {
+        return std::make_pair("Number of winners not a valid number", "");
+    }
     electionType_ = electionType;
     // Set Droop Quota
     droopCount = (voteTotal / (seatNum + 1)) + 1;
-    cout << "The Droop Quota is: " << droopCount << "\n";
+    Audit.append("The Droop Quota is: ");
+    Audit.append(to_string(droopCount) + "\n");
+    // cout << "The Droop Quota is: " << droopCount << "\n";
     if (shuffle_status)
         votes = shuffleelection(); //DEBUG, re-enable later
         int** results;
@@ -89,13 +99,22 @@ void Election::runElection(string* filenames, int fileSize,
 
     // STV Election Type
     if (electionType_ == 1) {
+        Audit.append("STV Election selected.\n");
+        //cout << "STV Election selected" << endl;
         results = STVProtocol(candidateNames);
     }
     // Plurality Election Type
     else if (electionType_ == 2) {
-        cout << "Plurality selected" << endl;
+        Audit.append("Plurality Election selected.\n");
+       // cout << "Plurality Election selected" << endl;
         results = PluralityProtocol(candidateNames);
     }
+   // string Testdone[2] = {TextResults,Audit};
+   // cout << endl << TextResults << endl;
+    //cout << endl << Audit << endl;
+    return std::make_pair(TextResults,Audit);
+  //  return { Audit,TextResults };
+
 }
 
 int Election::getTotalUndecided() {
@@ -116,7 +135,8 @@ int** Election::STVProtocol(string* candidateNames) {
         voteVals[i] = -1; //Associated vote not set for any given candidate
     }
     while (getTotalUndecided() > 0 && loopCatcher < 4) {
-        cout << "there are " << getTotalUndecided() << " Candidates still in" << endl;
+        Audit.append("There Are " + to_string(getTotalUndecided()) + " Candidates still in.\n");
+     //   cout << "there are " << getTotalUndecided() << " Candidates still in" << endl;
         for (int bnum = 0; bnum < voteTotal; bnum++) {
             if (voteVals[bnum] == -1) {
                 int newVoteVal = setVoteVals(votes[bnum]); // newVoteVal is current vote's winning candidate (rank 1)
@@ -137,14 +157,17 @@ int** Election::STVProtocol(string* candidateNames) {
 
                 if (candVal[newVoteVal] == droopCount)
                 {
-                    cout << "we have a new winner" << endl;
+                    Audit.append("A new winner has been found with the lastest count.\nThe winner will now be identified and votes will be redistributed\n");
+                    //cout << "A new winner has been found with the lastest count" << endl;
                     // STVWinnerProtocol(newVoteVal, candidateNames, bnum);
                     STVWinnerProtocolB(newVoteVal, candidateNames, bnum);
                 }
             }
         }
         if (getTotalUndecided() != 0 && loopCatcher < 4) {
-            cout << "we have a new loser" << endl;
+            
+            Audit.append("A new loser has been found with the lastest count.\nThe loser will now be identified and votes will be redistributed\n");
+          //  cout << "A new loser has been fond with the lastest count" << endl;
             loopCatcher++;
             // STVLoserProtocol(candidateNames);
             STVLoserProtocolB(candidateNames);
@@ -161,14 +184,20 @@ int** Election::STVProtocol(string* candidateNames) {
             candArr[i] = lastWin - candArr[i];
         }
     }
-    cout << "Election Complete" << endl;
-    cout << "Candidate Ranking:" << endl;
+    Audit.append("Election has now been complete.\n");
+
+        // cout << "Election Complete" << endl;
+    TextResults.append("Candidate Ranking:\n");
+
+    //    cout << "Candidate Ranking:" << endl;
     int win = 1;
     for (int i = 0; i < seatNum_; i++) {
-        cout << "Winner: ";
+      //  cout << "Winner " << (i+1) << ": ";
+        TextResults.append("Winner " + to_string((i + 1))+ ": ");
         for (int i = 0; i < candidateTotal; i++) {
             if (candArr[i] == win) {
-                cout << candidateNames[i] << " with " << candVal[i] << " votes" << endl;
+                TextResults.append(candidateNames[i] + " with " + to_string(candVal[i]) + " votes.\n");
+                //cout << candidateNames[i] << " with " << candVal[i] << " votes" << endl;
                 win++;
                 i = candidateTotal;
             }
@@ -249,17 +278,22 @@ void Election::STVLoserProtocolB(string* candidateNames) {
             newLoss = i;
         }
     }
-    cout << "Latest Loser is " << candidateNames[newLoss] << " with " << candVal[newLoss] << " votes" << endl;
+    Audit.append("Latest Loser is " + candidateNames[newLoss] + " with " + to_string(candVal[newLoss]) + " votes.\n");
+
+  //  cout << "Latest Loser is " << candidateNames[newLoss] << " with " << candVal[newLoss] << " votes." << endl;
     for (int i = 0; i < candidateTotal; i++) {
         if (candArr[i] < 0) {
             candArr[i]--;
         }
     }
     candArr[newLoss] = -1;
-    cout << "there Are now " << getTotalUndecided() << " candidates remaining" << endl;
+    Audit.append("There are now " + to_string(getTotalUndecided()) + " candidates remaining.\n");
+   // cout << "There are now " << getTotalUndecided() << " candidates remaining." << endl;
 
     finalists.push_back(newLoss);
     if (getTotalUndecided()) {
+        Audit.append("Votes will now be redistributed based on rankings\n");
+     //   cout << "Votes will now be redistributed based on rankings" << endl;
         for (int bnum = 0; bnum < voteTotal; bnum++) {
             bool adjustedVote = false;
             for (auto i = finalists.begin(); i < finalists.end(); i++) {
@@ -280,41 +314,7 @@ void Election::STVLoserProtocolB(string* candidateNames) {
     }
 }
 
-
-
-/*
-
-void Election::STVLoserProtocol(string* candidateNames) {
-    int lowestvote = candidates->undecided[0].getVoteCount();
-    int newLoser = findNewLoser(candidateNames, candidates->undecided[0].getName());
-    for (auto i = candidates->undecided.begin(); i < candidates->undecided.end(); i++) {
-        Candidate c = *i;
-        int newVoteCount = c.getVoteCount();
-        if (newVoteCount < lowestvote) {
-            lowestvote = newVoteCount;
-            newLoser = findNewLoser(candidateNames, c.getName());
-        }
-        else if (newVoteCount == lowestvote) {
-            newLoser = coinToss(newLoser, findNewLoser(candidateNames, c.getName()));
-        }
-    }
-    candidates->setCandidate(candidateNames[newLoser], candidates->undecided, candidates->losers);
-    finalists.push_back(newLoser);
-    for (int bnum = 0; bnum < voteTotal; bnum++) {
-        bool adjustedVote = false;
-        for (auto i = finalists.begin(); i < finalists.end(); i++) {
-            if (votes[bnum][*i] == 1) {
-                adjustVote(votes[bnum]);
-                voteVals[bnum] = -1;
-                adjustedVote = true;
-            }
-            if (adjustedVote)
-                bnum--;
-        }
-    }
-}
-*/
-
+//Picks one number of the other randomly
 int Election::coinToss(int candidateA, int candidateB) {
     int flip;
     flip = rand() % 2 + 1;// assign random numbers
@@ -382,35 +382,49 @@ int** Election::PluralityProtocol(string* candidateNames) {
     {
         votecounts[i] = 0;
     }
-
-    cout << "Vote Total: " << voteTotal << endl;
+    Audit.append("Total Number of Votes cast: " + to_string(voteTotal) + "\n");
+  //  cout << "Total Number of Votes cast: " << voteTotal << endl;
     for (int i = 0; i < voteTotal; i++) {
         for (int j = 0; j < candidateTotal; j++) {
-            cout << votes[i][j] << "  " << i << "  " << j << endl;
+           // cout << votes[i][j] << "  " << i << "  " << j << endl;
             if (votes[i][j] == 1) {
                 votecounts[j] = votecounts[j] + 1;
-                //    candidates->candidateList[j].incrementVote(); ignore candidate class
             }
         }
     }
     int winner = 0;
-    cout << votecounts[0] << endl;
-    cout << votecounts[1] << endl;
-    cout << votecounts[2] << endl;
-    cout << votecounts[3] << endl;
     if (seatNum_ == 1) {
     for (int i = 1; i < candidateTotal; i++) {
         if (votecounts[i] > votecounts[winner])
             winner = i;
         else if (votecounts[i] == votecounts[winner])
             winner = coinToss(i, winner);
+        Audit.append("Due to a tie, a winner will be determined by a coin toss.\n");
+
     }
-    std::cout << "the winner is " << candidateNames[winner] << std::endl;
-    }
+    TextResults.append("The winner is Candidate " + candidateNames[winner] + " with " + to_string(votecounts[winner]) + " votes.\n");
+          }
     else
     {
         //Multiple Seats
+        int* tempvotecounts = new int[candidateTotal];
+        tempvotecounts = votecounts;
+        sort(tempvotecounts, tempvotecounts + candidateTotal, greater<int>());
+        for (int i = 0; i < seatNum_; i++) {
+            for (int j = 0; j < candidateTotal; j++)
+            {
+                if (tempvotecounts[i] == votecounts[j])
+                {
+               
+                    TextResults.append("Winner " + to_string((i + 1)) + ": " + candidateNames[j] + " with " + to_string(votecounts[j]) + " votes.\n");
+                    j = candidateTotal;
 
+                //    cout << "Winner " << (i+1) << ": " << candidateNames[j] << " with " << votecounts[j] << " votes." << std::endl;
+                }
+            }
+
+        }
+        delete[] tempvotecounts;
     }
 
     return votes;
@@ -420,55 +434,75 @@ int** Election::PluralityProtocol(string* candidateNames) {
 
 
 
-//Test Functions
 
-
-// int Election::findLowestVoteB(){
-//   int lowest = 0;
-//   int votTot = candidateBypassVoteCounts[0];
-//   for(int i = 0 ; i < candidateTotal ; i++){
-//     if(candidateVoteCounts[i]<=votTot){
-//       lowest = i;
-//       votTot = candidateVoteCounts[i];
-//     }
-//   }
-//   return lowest;
-
-// }
-void Election::newestLoserB(int loser) {
-    ;
-    for (int i = 0; i < candidateTotal; i++) {
-        if (candidateBypassLoser[i] > 0)
-            candidateBypassLoser[i]++;
-    }
-    candidateBypassLoser[loser] = 1;
-    candidateBypassUndecided[loser] = 0;
-
-}
-
-
+//Shuffles the ballots so that randomness and fairness can occur
+// Returns a set of ballots that are shuffled 
 int** Election::shuffleelection() {
     random_device rd;
     mt19937 g(rd());
     int totalVotes = ballotBox->GetVoteTotal();
-
     // Shuffling our array
+    Audit.append("Election is being shuffled.\n");
     shuffle(ballotBox->GetBallots(), (ballotBox->GetBallots() + totalVotes), g);
 
-    return ballotBox->GetBallots(); //Need to test with 
+    return ballotBox->GetBallots();
 }
 
+//Runs main function
 int main() {
+   
+    bool correctFiles;
+    bool correctseats;
+    bool correct;
 
-    //Used for coin toss
-    srand(static_cast<int>(time(0)));
-    cout << "\nin main\n";
-    Election myElection(0);
-    string myString[1];
+    std::pair<std::string, std::string> textwrite;
+    srand(static_cast<int>(time(0)));//Used for coin toss
+    string auditElection;
+    string resultsElection;
+
+   
+
+
+    cout << "Election kicked off" << endl;
+    Election myElection(1);
+    //1 allows us to shuffle order -- 0 keeps the order from the file
+    string myString[2];
     //C:\Users\Adam\Downloads\example_election_file.csv
+    //C:\Users\Adam\Downloads\example_election_file2.csv
+    
     cin >> myString[0];
-    cout << "about to run election" << endl;
-    myElection.runElection(myString, 1, 1, 1);
+    if (std::fstream{ myString[0] }) {
+        std::cout << "file exists\n";
+    }
+ 
+    cin >> myString[1];
+    cout << "Election will now begin" << endl;
+    textwrite = myElection.runElection(myString, 2, 2, 5);
+
+    auditElection = textwrite.second;
+    resultsElection = textwrite.first;
+
+  //  cout << auditElection << "\n\nResults\n\n\n";
+   // cout << resultsElection << "\n\nAudit\n\n\n";
+    ofstream Audit("Result_Audit.txt");
+    if (Audit.is_open())
+    {
+        Audit << "Results\n\n";
+        Audit << resultsElection;
+        Audit << "\n\nAudit\n\n";
+        Audit << auditElection;
+
+        Audit.close();
+    }
+    else cout << "Unable to open file";
+
+   // delete[] resultstest;
+    // string of text file location for the report
+
+    // Report
+
+    // Audit
+
 }
 
 

@@ -32,7 +32,7 @@ int** BallotBox::GetBallots() { return ballots; }
 int** BallotBox::AddVotes(string* filenames, int fileTotal) {
     using namespace std;
     //Step 1: go through every file line by line to determine number of votes (row count for 2d votes array)
-    cout << "inBallotBox::AddVotes\n";
+  //  cout << "inBallotBox::AddVotes\n";
     int totalVotes = 0;
     int invalidVotes = 0;
     int totalVotestemp = 0;
@@ -40,14 +40,14 @@ int** BallotBox::AddVotes(string* filenames, int fileTotal) {
         fstream fin(filenames[i]);
         if (!fin.is_open())
         {
-            cout << "Error in BallotBox.cpp; csv file is not found\n";
-            cout << filenames[i];
+            cout << "Error - .csv file is not found\n";
+          //  cout << filenames[i];
             return NULL;
         }
         int temp =
             count(std::istreambuf_iterator<char>(fin),
                 std::istreambuf_iterator<char>(), '\n');
-        cout << "temp votes is " << temp << endl;
+    //    cout << "temp votes is " << temp << endl;
         totalVotes += (temp);
         fin.close();
     }
@@ -68,11 +68,11 @@ int** BallotBox::AddVotes(string* filenames, int fileTotal) {
     fin2.close();
     
     // Step 3: create a 2d array containing vote values
-    cout << "about to create new int pointer table. total votes is " << totalVotes << endl;
+   // cout << "about to create new int pointer table. total votes is " << totalVotes << endl;
     int** voteTable = new int* [totalVotes];
     int* InvalidBallot = new int[totalVotes];
 
-    cout << "table created\n";
+  //  cout << "table created\n";
     int it = 0; //global iterator, persistent between files
     // iterate over all files:
     int temptotal = totalVotes;
@@ -115,7 +115,7 @@ int** BallotBox::AddVotes(string* filenames, int fileTotal) {
                 if (emptycount >= (colTotal / 2) && (electionType == 1)) {
                     InvalidBallot[it] = 1;
                     invalidVotes = invalidVotes + 1;
-                    cout << "Invalid Ballot found in row: " << it << endl;
+                   // cout << "Invalid Ballot found in row: " << it << endl;
                     voteTable[it] = x;
                     it++;
                 }
@@ -152,8 +152,8 @@ int** BallotBox::AddVotes(string* filenames, int fileTotal) {
                 delete[] voteTable;
                 voteTable = tmp;
                 voteTotal = voteTotal - 1;
-                cout << "Row: " << rowToDel << endl;
-                cout << voteTotal << endl;
+             //   cout << "Row: " << rowToDel << endl;
+               // cout << voteTotal << endl;
                 totalgone = totalgone + 1;
             }
 
@@ -162,10 +162,10 @@ int** BallotBox::AddVotes(string* filenames, int fileTotal) {
         {
             for (int j = 0; j < colTotal; j++)
             {
-                cout << voteTable[i][j] << "   ";
+            //    cout << voteTable[i][j] << "   ";
 
             }
-            cout << endl;
+          //  cout << endl;
         }
 
         ballots = voteTable;
