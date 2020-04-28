@@ -40,7 +40,7 @@ Election::Election(bool shufflestatus_) {
     Audit = "";
     TextResults = "";
 }
-
+//Runs the election -- essential the main of this system -- takes the file names, amount of files, election type, and total winner and returns a string Audit and a string Report!
 std::pair<std::string,std::string> Election::runElection(string* filenames, int fileSize,
     int electionType, int seatNum) {
 
@@ -50,14 +50,12 @@ std::pair<std::string,std::string> Election::runElection(string* filenames, int 
     votes = myBallotBox->AddVotes(filenames, fileSize);
     if (votes == NULL)
     {
-      //  string noTest[2] = { "Test does not have at least 50% valid ballots -- no election was run" ,"" };
         return std::make_pair("Test does not have at least 50% valid ballots -- no election was run", "");
     }
     ballotBox = myBallotBox;
     seatNum_ = seatNum;
     int tmp = myBallotBox->GetTotalColumns();
     string* candidateNames = new string[tmp];
-    // create Candidate values
     Candidates* myCandidates = new Candidates();
     fstream fin(filenames[0]);
     std::string line;
@@ -80,16 +78,14 @@ std::pair<std::string,std::string> Election::runElection(string* filenames, int 
         return std::make_pair("Number of winners not a valid number", "");
     }
     electionType_ = electionType;
-    // Set Droop Quota
     droopCount = (voteTotal / (seatNum + 1)) + 1;
     Audit.append("The Droop Quota is: ");
     Audit.append(to_string(droopCount) + "\n");
-    // cout << "The Droop Quota is: " << droopCount << "\n";
     if (shuffle_status)
-        votes = shuffleelection(); //DEBUG, re-enable later
+        votes = shuffleelection();
         int** results;
 
-    //CandidateBypass
+
     candArr = new int[candidateTotal];
     candVal = new int[candidateTotal];
     for (int i = 0; i < candidateTotal; i++) {
@@ -100,34 +96,31 @@ std::pair<std::string,std::string> Election::runElection(string* filenames, int 
     // STV Election Type
     if (electionType_ == 1) {
         Audit.append("STV Election selected.\n");
-        //cout << "STV Election selected" << endl;
         results = STVProtocol(candidateNames);
     }
     // Plurality Election Type
     else if (electionType_ == 2) {
         Audit.append("Plurality Election selected.\n");
-       // cout << "Plurality Election selected" << endl;
         results = PluralityProtocol(candidateNames);
     }
-   // string Testdone[2] = {TextResults,Audit};
-   // cout << endl << TextResults << endl;
-    //cout << endl << Audit << endl;
+    //returns string of test results and audit
     return std::make_pair(TextResults,Audit);
-  //  return { Audit,TextResults };
 
 }
 
+//Total candidates not choosen yet
 int Election::getTotalUndecided() {
     int j = 0;
     for (int i = 0; i < candidateTotal; i++) {
         if (candArr[i] == 0) {
-            // cout << "Candidate " << i << " is still in"<<endl;
             j++;
         }
     }
     return j;
 }
 
+
+// STV protocal -- does STV testing -- returns the voter 2D array
 int** Election::STVProtocol(string* candidateNames) {
     int loopCatcher = 0;
     voteVals = new int[voteTotal];
@@ -158,8 +151,6 @@ int** Election::STVProtocol(string* candidateNames) {
                 if (candVal[newVoteVal] == droopCount)
                 {
                     Audit.append("A new winner has been found with the lastest count.\nThe winner will now be identified and votes will be redistributed\n");
-                    //cout << "A new winner has been found with the lastest count" << endl;
-                    // STVWinnerProtocol(newVoteVal, candidateNames, bnum);
                     STVWinnerProtocolB(newVoteVal, candidateNames, bnum);
                 }
             }
@@ -169,7 +160,6 @@ int** Election::STVProtocol(string* candidateNames) {
             Audit.append("A new loser has been found with the lastest count.\nThe loser will now be identified and votes will be redistributed\n");
           //  cout << "A new loser has been fond with the lastest count" << endl;
             loopCatcher++;
-            // STVLoserProtocol(candidateNames);
             STVLoserProtocolB(candidateNames);
         }
     }
@@ -245,7 +235,10 @@ void Election::STVWinnerProtocolB(int newWinner, string* candidateNames, int ivo
     }
 }
 
-
+/*
+  STVWinnerProtocol: this function
+    Old function no longer in use
+*/
 void Election::STVWinnerProtocol(int newWinner, string* candidateNames, int ivote) {
     candidates->setCandidate(candidateNames[newWinner], candidates->undecided, candidates->winners);
     finalists.push_back(newWinner);
@@ -279,8 +272,6 @@ void Election::STVLoserProtocolB(string* candidateNames) {
         }
     }
     Audit.append("Latest Loser is " + candidateNames[newLoss] + " with " + to_string(candVal[newLoss]) + " votes.\n");
-
-  //  cout << "Latest Loser is " << candidateNames[newLoss] << " with " << candVal[newLoss] << " votes." << endl;
     for (int i = 0; i < candidateTotal; i++) {
         if (candArr[i] < 0) {
             candArr[i]--;
@@ -288,20 +279,16 @@ void Election::STVLoserProtocolB(string* candidateNames) {
     }
     candArr[newLoss] = -1;
     Audit.append("There are now " + to_string(getTotalUndecided()) + " candidates remaining.\n");
-   // cout << "There are now " << getTotalUndecided() << " candidates remaining." << endl;
 
     finalists.push_back(newLoss);
     if (getTotalUndecided()) {
         Audit.append("Votes will now be redistributed based on rankings\n");
-     //   cout << "Votes will now be redistributed based on rankings" << endl;
         for (int bnum = 0; bnum < voteTotal; bnum++) {
             bool adjustedVote = false;
             for (auto i = finalists.begin(); i < finalists.end(); i++) {
                 if (bnum >= 0) {
                     if (votes[bnum][*i] == 1) {
-                        //       cout << "vote " << bnum << " reads " << votes[bnum][0] << " " << votes[bnum][1]<<endl;
                         adjustVote(votes[bnum]);
-                        //      cout << "vote " << bnum << " reads " << votes[bnum][0] << " " << votes[bnum][1]<<endl;
                         voteVals[bnum] = -1;
                         adjustedVote = true;
                     }
@@ -328,6 +315,7 @@ int Election::coinToss(int candidateA, int candidateB) {
     
 }
 
+//Find the loser when a droop quota hasnt been met
 int Election::findNewLoser(string* candidateNames, string newName) {
     int j = 0;
     for (auto i = candidates->candidateList.begin(); i < candidates->candidateList.end(); i++) {
@@ -374,6 +362,8 @@ int Election::setVoteVals(int* ballot) {
     candidateTotal: int, total number of candidates
     candidates: pointer to relevant Candidates class
     voteTotal: int, total number of votes
+
+    Plurality protocal is the system counting all votes in a file and testing to make sure they work efficently
 */
 
 int** Election::PluralityProtocol(string* candidateNames) {
@@ -383,10 +373,8 @@ int** Election::PluralityProtocol(string* candidateNames) {
         votecounts[i] = 0;
     }
     Audit.append("Total Number of Votes cast: " + to_string(voteTotal) + "\n");
-  //  cout << "Total Number of Votes cast: " << voteTotal << endl;
     for (int i = 0; i < voteTotal; i++) {
         for (int j = 0; j < candidateTotal; j++) {
-           // cout << votes[i][j] << "  " << i << "  " << j << endl;
             if (votes[i][j] == 1) {
                 votecounts[j] = votecounts[j] + 1;
             }
