@@ -10,7 +10,7 @@ class Election {
 public:
     //   virtual void runElection() = 0;
     Election(bool shufflestatus_);
-    void runElection(string* filenames, int fileSize, int electionType, int seatNum);
+    std::pair<std::string, std::string> runElection(string* filenames, int fileSize, int electionType, int seatNum);
     int GetVoteTotal() { return voteTotal; }
 
 private:
@@ -27,6 +27,8 @@ private:
     int* voteVals;
     std::vector<int> finalists;
     int** votes;
+    string Audit;
+    string TextResults;
 
     int** shuffleelection();
     int** STVProtocol(string* candidateNames);
