@@ -1,44 +1,67 @@
-//
-// Created by m0narch on 3/27/20.
-//
-#include <cstdlib>
+#include <stdio.h>      /* printf, scanf, puts, NULL */
 #include <iostream>
-#include <conio.h>
-#include <vector>
-#include "BallotBox.cpp"
-#include "BallotBox.h"
-#include "Candidate.h"
-#include "Candidate.cpp"
-#include "Candidates.h"
-#include "Candidates.cpp"
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>       /* time */
+#include <random>
+#include <fstream>
+#include <string>
+
+
 #include "Election.h"
-#include "Election.cpp"
-#include "Reporter.cpp"
-#include "Driver.cpp"
+#include "BallotBox.h"
 
 int main() {
 
-    Driver Data;
-    Election Elect;
-    Reporter report;
-    Candidates Cands;
-    //Get inputs from User
-    Data.Drive();
+    bool correctFiles;
+    bool correctseats;
+    bool correct;
 
-    //Run Election Algorthim
-    Elect.runElection(Data.getVoteFiles(), Data.getSize(), Data.getTest(), Data.getTotalSeats());
-    //Inputs --- Vote files-- Total # of vote files -- Test # -- Total # of seats
+    std::pair<std::string, std::string> textwrite;
+    srand(static_cast<int>(time(0)));//Used for coin toss
+    string auditElection;
+    string resultsElection;
 
-    //Start Audit
-    report.createAudit(); // Creates Audit
-    report.writeToFile(Data.getTest(), Data.getTotalSeats(), Cands.getAllCount(), Cands.getWinnerCount(), Cands.getLosersCount()); //Writes Audit to File
-        //Inputs --- Test # -- Total # of seats -- Total Candidates -- Total Winners -- Total Losers
 
-    report.writeToScreen(Data.getTest(), BallotBox.GetVoteTotal(), Data.getTotalSeats(), Cands.getAllCount(), Cands.getWinnerCount(), Cands.getLosersCount(); //Writes the results to the screen
-    //Inputs --- Test # -- Total # of votes -- Total # of seats -- Total Candidates -- Total Winners -- Total Losers
 
-    delete[] Data.getVoteFiles();
 
-    system("PAUSE");
+    cout << "Election kicked off" << endl;
+    Election myElection(1);
+    //1 allows us to shuffle order -- 0 keeps the order from the file
+    string myString[2];
+    //C:\Users\Adam\Downloads\example_election_file.csv
+    //C:\Users\Adam\Downloads\example_election_file2.csv
 
+    cin >> myString[0];
+    if (std::fstream{ myString[0] }) {
+        std::cout << "file exists\n";
+    }
+
+    cin >> myString[1];
+    cout << "Election will now begin" << endl;
+    textwrite = myElection.runElection(myString, 2, 2, 5);
+
+    auditElection = textwrite.second;
+    resultsElection = textwrite.first;
+
+    //  cout << auditElection << "\n\nResults\n\n\n";
+     // cout << resultsElection << "\n\nAudit\n\n\n";
+    ofstream Audit("Result_Audit.txt");
+    if (Audit.is_open())
+    {
+        Audit << "Results\n\n";
+        Audit << resultsElection;
+        Audit << "\n\nAudit\n\n";
+        Audit << auditElection;
+
+        Audit.close();
+    }
+    else cout << "Unable to open file";
+
+    // delete[] resultstest;
+     // string of text file location for the report
+
+     // Report
+
+     // Audit
+    return 0;
 }
