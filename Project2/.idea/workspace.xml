@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="src" targetName="src" />
+      <config projectName="src" targetName="src_autogen" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6390d82c-cd7d-4807-8833-0dea945b717d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../src/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../src/.idea/src.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../src/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Misc/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Misc/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../src/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1b9Vjg0WGjY67PjtSiLe0PQg9Oi" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+  </component>
+  <component name="RunManager" selected="CMake Application.src">
+    <configuration name="src" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="src" TARGET_NAME="src" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="src" RUN_TARGET_NAME="src">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="src_autogen" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="src" TARGET_NAME="src_autogen" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.src" />
+      <item itemvalue="CMake Application.src_autogen" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6390d82c-cd7d-4807-8833-0dea945b717d" name="Default Changelist" comment="" />
+      <created>1588044432237</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1588044432237</updated>
+      <workItem from="1588044433753" duration="589000" />
+      <workItem from="1588046521561" duration="49000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1862" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1588046569112">
+      <screen x="1366" y="0" width="1360" height="768" />
+    </state>
+    <state x="1862" y="154" width="424" height="484" key="FileChooserDialogImpl/1366.0.1360.768/0.27.1366.741@1366.0.1360.768" timestamp="1588046569112" />
+    <state width="640" height="195" key="ImportCMakeProjectWizard.bottomPanel" timestamp="1588045022461">
+      <screen x="1366" y="0" width="1360" height="768" />
+    </state>
+    <state width="640" height="195" key="ImportCMakeProjectWizard.bottomPanel/1366.0.1360.768/0.27.1366.741@1366.0.1360.768" timestamp="1588045022461" />
+    <state width="640" height="455" key="ImportCMakeProjectWizard.topPanel" timestamp="1588045022461">
+      <screen x="1366" y="0" width="1360" height="768" />
+    </state>
+    <state width="640" height="455" key="ImportCMakeProjectWizard.topPanel/1366.0.1360.768/0.27.1366.741@1366.0.1360.768" timestamp="1588045022461" />
+  </component>
+</project>
