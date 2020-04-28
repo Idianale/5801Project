@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(electionSrc)
+project(src)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_AUTOMOC ON)
@@ -14,7 +14,7 @@ include_directories(.)
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 
-add_executable(electionSrc
+add_executable(src
         BallotBox.h
         BallotBox.cpp
         Candidates.h
@@ -28,4 +28,4 @@ add_executable(electionSrc
         main.cpp
         )
 
-target_link_libraries(electionSrc Qt5::Widgets)
+target_link_libraries(src Qt5::Widgets)

@@ -111,57 +111,219 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named electionSrc
+# Target rules for targets named src
 
 # Build rule for target.
-electionSrc: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 electionSrc
-.PHONY : electionSrc
+src: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 src
+.PHONY : src
 
 # fast build rule for target.
-electionSrc/fast:
-	$(MAKE) -f CMakeFiles/electionSrc.dir/build.make CMakeFiles/electionSrc.dir/build
-.PHONY : electionSrc/fast
+src/fast:
+	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/build
+.PHONY : src/fast
 
 #=============================================================================
-# Target rules for targets named electionSrc_autogen
+# Target rules for targets named src_autogen
 
 # Build rule for target.
-electionSrc_autogen: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 electionSrc_autogen
-.PHONY : electionSrc_autogen
+src_autogen: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 src_autogen
+.PHONY : src_autogen
 
 # fast build rule for target.
-electionSrc_autogen/fast:
-	$(MAKE) -f CMakeFiles/electionSrc_autogen.dir/build.make CMakeFiles/electionSrc_autogen.dir/build
-.PHONY : electionSrc_autogen/fast
+src_autogen/fast:
+	$(MAKE) -f CMakeFiles/src_autogen.dir/build.make CMakeFiles/src_autogen.dir/build
+.PHONY : src_autogen/fast
 
-electionSrc_autogen/mocs_compilation.o: electionSrc_autogen/mocs_compilation.cpp.o
+BallotBox.o: BallotBox.cpp.o
 
-.PHONY : electionSrc_autogen/mocs_compilation.o
+.PHONY : BallotBox.o
 
 # target to build an object file
-electionSrc_autogen/mocs_compilation.cpp.o:
-	$(MAKE) -f CMakeFiles/electionSrc.dir/build.make CMakeFiles/electionSrc.dir/electionSrc_autogen/mocs_compilation.cpp.o
-.PHONY : electionSrc_autogen/mocs_compilation.cpp.o
+BallotBox.cpp.o:
+	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/BallotBox.cpp.o
+.PHONY : BallotBox.cpp.o
 
-electionSrc_autogen/mocs_compilation.i: electionSrc_autogen/mocs_compilation.cpp.i
+BallotBox.i: BallotBox.cpp.i
 
-.PHONY : electionSrc_autogen/mocs_compilation.i
+.PHONY : BallotBox.i
 
 # target to preprocess a source file
-electionSrc_autogen/mocs_compilation.cpp.i:
-	$(MAKE) -f CMakeFiles/electionSrc.dir/build.make CMakeFiles/electionSrc.dir/electionSrc_autogen/mocs_compilation.cpp.i
-.PHONY : electionSrc_autogen/mocs_compilation.cpp.i
+BallotBox.cpp.i:
+	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/BallotBox.cpp.i
+.PHONY : BallotBox.cpp.i
 
-electionSrc_autogen/mocs_compilation.s: electionSrc_autogen/mocs_compilation.cpp.s
+BallotBox.s: BallotBox.cpp.s
 
-.PHONY : electionSrc_autogen/mocs_compilation.s
+.PHONY : BallotBox.s
 
 # target to generate assembly for a file
-electionSrc_autogen/mocs_compilation.cpp.s:
-	$(MAKE) -f CMakeFiles/electionSrc.dir/build.make CMakeFiles/electionSrc.dir/electionSrc_autogen/mocs_compilation.cpp.s
-.PHONY : electionSrc_autogen/mocs_compilation.cpp.s
+BallotBox.cpp.s:
+	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/BallotBox.cpp.s
+.PHONY : BallotBox.cpp.s
+
+Candidate.o: Candidate.cpp.o
+
+.PHONY : Candidate.o
+
+# target to build an object file
+Candidate.cpp.o:
+	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/Candidate.cpp.o
+.PHONY : Candidate.cpp.o
+
+Candidate.i: Candidate.cpp.i
+
+.PHONY : Candidate.i
+
+# target to preprocess a source file
+Candidate.cpp.i:
+	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/Candidate.cpp.i
+.PHONY : Candidate.cpp.i
+
+Candidate.s: Candidate.cpp.s
+
+.PHONY : Candidate.s
+
+# target to generate assembly for a file
+Candidate.cpp.s:
+	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/Candidate.cpp.s
+.PHONY : Candidate.cpp.s
+
+Candidates.o: Candidates.cpp.o
+
+.PHONY : Candidates.o
+
+# target to build an object file
+Candidates.cpp.o:
+	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/Candidates.cpp.o
+.PHONY : Candidates.cpp.o
+
+Candidates.i: Candidates.cpp.i
+
+.PHONY : Candidates.i
+
+# target to preprocess a source file
+Candidates.cpp.i:
+	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/Candidates.cpp.i
+.PHONY : Candidates.cpp.i
+
+Candidates.s: Candidates.cpp.s
+
+.PHONY : Candidates.s
+
+# target to generate assembly for a file
+Candidates.cpp.s:
+	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/Candidates.cpp.s
+.PHONY : Candidates.cpp.s
+
+Election.o: Election.cpp.o
+
+.PHONY : Election.o
+
+# target to build an object file
+Election.cpp.o:
+	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/Election.cpp.o
+.PHONY : Election.cpp.o
+
+Election.i: Election.cpp.i
+
+.PHONY : Election.i
+
+# target to preprocess a source file
+Election.cpp.i:
+	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/Election.cpp.i
+.PHONY : Election.cpp.i
+
+Election.s: Election.cpp.s
+
+.PHONY : Election.s
+
+# target to generate assembly for a file
+Election.cpp.s:
+	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/Election.cpp.s
+.PHONY : Election.cpp.s
+
+electionwizard.o: electionwizard.cpp.o
+
+.PHONY : electionwizard.o
+
+# target to build an object file
+electionwizard.cpp.o:
+	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/electionwizard.cpp.o
+.PHONY : electionwizard.cpp.o
+
+electionwizard.i: electionwizard.cpp.i
+
+.PHONY : electionwizard.i
+
+# target to preprocess a source file
+electionwizard.cpp.i:
+	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/electionwizard.cpp.i
+.PHONY : electionwizard.cpp.i
+
+electionwizard.s: electionwizard.cpp.s
+
+.PHONY : electionwizard.s
+
+# target to generate assembly for a file
+electionwizard.cpp.s:
+	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/electionwizard.cpp.s
+.PHONY : electionwizard.cpp.s
+
+main.o: main.cpp.o
+
+.PHONY : main.o
+
+# target to build an object file
+main.cpp.o:
+	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/main.cpp.o
+.PHONY : main.cpp.o
+
+main.i: main.cpp.i
+
+.PHONY : main.i
+
+# target to preprocess a source file
+main.cpp.i:
+	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/main.cpp.i
+.PHONY : main.cpp.i
+
+main.s: main.cpp.s
+
+.PHONY : main.s
+
+# target to generate assembly for a file
+main.cpp.s:
+	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/main.cpp.s
+.PHONY : main.cpp.s
+
+src_autogen/mocs_compilation.o: src_autogen/mocs_compilation.cpp.o
+
+.PHONY : src_autogen/mocs_compilation.o
+
+# target to build an object file
+src_autogen/mocs_compilation.cpp.o:
+	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/src_autogen/mocs_compilation.cpp.o
+.PHONY : src_autogen/mocs_compilation.cpp.o
+
+src_autogen/mocs_compilation.i: src_autogen/mocs_compilation.cpp.i
+
+.PHONY : src_autogen/mocs_compilation.i
+
+# target to preprocess a source file
+src_autogen/mocs_compilation.cpp.i:
+	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/src_autogen/mocs_compilation.cpp.i
+.PHONY : src_autogen/mocs_compilation.cpp.i
+
+src_autogen/mocs_compilation.s: src_autogen/mocs_compilation.cpp.s
+
+.PHONY : src_autogen/mocs_compilation.s
+
+# target to generate assembly for a file
+src_autogen/mocs_compilation.cpp.s:
+	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/src_autogen/mocs_compilation.cpp.s
+.PHONY : src_autogen/mocs_compilation.cpp.s
 
 # Help Target
 help:
@@ -170,12 +332,30 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... electionSrc"
+	@echo "... src"
 	@echo "... edit_cache"
-	@echo "... electionSrc_autogen"
-	@echo "... electionSrc_autogen/mocs_compilation.o"
-	@echo "... electionSrc_autogen/mocs_compilation.i"
-	@echo "... electionSrc_autogen/mocs_compilation.s"
+	@echo "... src_autogen"
+	@echo "... BallotBox.o"
+	@echo "... BallotBox.i"
+	@echo "... BallotBox.s"
+	@echo "... Candidate.o"
+	@echo "... Candidate.i"
+	@echo "... Candidate.s"
+	@echo "... Candidates.o"
+	@echo "... Candidates.i"
+	@echo "... Candidates.s"
+	@echo "... Election.o"
+	@echo "... Election.i"
+	@echo "... Election.s"
+	@echo "... electionwizard.o"
+	@echo "... electionwizard.i"
+	@echo "... electionwizard.s"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
+	@echo "... src_autogen/mocs_compilation.o"
+	@echo "... src_autogen/mocs_compilation.i"
+	@echo "... src_autogen/mocs_compilation.s"
 .PHONY : help
 
 
