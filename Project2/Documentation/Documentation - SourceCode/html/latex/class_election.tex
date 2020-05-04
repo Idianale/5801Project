@@ -1,0 +1,167 @@
+\hypertarget{class_election}{}\doxysection{Election Class Reference}
+\label{class_election}\index{Election@{Election}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_election_af00d655bcd6df012b8442b1b58f4d6c9}\label{class_election_af00d655bcd6df012b8442b1b58f4d6c9}} 
+{\bfseries Election} (bool shufflestatus\+\_\+)
+\item 
+\mbox{\Hypertarget{class_election_aa745043889e066b0058daf9317e0aff8}\label{class_election_aa745043889e066b0058daf9317e0aff8}} 
+std\+::pair$<$ std\+::string, std\+::string $>$ {\bfseries run\+Election} (string $\ast$filenames, int file\+Size, int election\+Type, int seat\+Num)
+\item 
+\mbox{\Hypertarget{class_election_a1c41b29c48ed8e6c612fe2ba44222b5b}\label{class_election_a1c41b29c48ed8e6c612fe2ba44222b5b}} 
+int {\bfseries Get\+Vote\+Total} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_election_a496d247496d8fb8b183dd5ee22866cd0}\label{class_election_a496d247496d8fb8b183dd5ee22866cd0}} 
+void {\bfseries set\+Candidates} (\mbox{\hyperlink{class_ballot_box}{Ballot\+Box}} $\ast$box)
+\item 
+\mbox{\Hypertarget{class_election_a9df7fc24a89c3fdff0b7f6f0efe8f485}\label{class_election_a9df7fc24a89c3fdff0b7f6f0efe8f485}} 
+int $\ast$$\ast$ {\bfseries shuffleelection} ()
+\item 
+\mbox{\Hypertarget{class_election_a0ec32738b697a144ef3b9edaabedcdd3}\label{class_election_a0ec32738b697a144ef3b9edaabedcdd3}} 
+int $\ast$$\ast$ {\bfseries S\+T\+V\+Protocol} (string $\ast$candidate\+Names)
+\item 
+\mbox{\Hypertarget{class_election_a196ef907287f441f8780b0104dc003a2}\label{class_election_a196ef907287f441f8780b0104dc003a2}} 
+int $\ast$$\ast$ {\bfseries Plurality\+Protocol} (string $\ast$candidate\+Names)
+\item 
+\mbox{\Hypertarget{class_election_a8146e6fe5584ac02bb8c571fbd850e54}\label{class_election_a8146e6fe5584ac02bb8c571fbd850e54}} 
+int {\bfseries coin\+Toss} (int candidateA, int candidateB)
+\item 
+\mbox{\Hypertarget{class_election_a0cad953ae33d1106e8d1215eed2fbdda}\label{class_election_a0cad953ae33d1106e8d1215eed2fbdda}} 
+void {\bfseries set\+Candidates} (\mbox{\hyperlink{class_candidates}{Candidates}} $\ast$candidates\+\_\+, string $\ast$filenames)
+\item 
+\mbox{\Hypertarget{class_election_a5c6b39c98f23af1499bd2071116f4e09}\label{class_election_a5c6b39c98f23af1499bd2071116f4e09}} 
+void {\bfseries set\+Ballot\+Box} (\mbox{\hyperlink{class_ballot_box}{Ballot\+Box}} $\ast$ballot\+Box\+\_\+, string $\ast$filenames, int file\+Total)
+\item 
+\mbox{\Hypertarget{class_election_a4185740deccb9d4d7ebdce8e943990f9}\label{class_election_a4185740deccb9d4d7ebdce8e943990f9}} 
+int $\ast$$\ast$ {\bfseries Basic\+Protocol} (\mbox{\hyperlink{class_candidates}{Candidates}} $\ast$candidates\+\_\+, \mbox{\hyperlink{class_ballot_box}{Ballot\+Box}} $\ast$ballot\+Box\+\_\+, int $\ast$$\ast$votes)
+\item 
+\mbox{\Hypertarget{class_election_ae75dfaae702498d191f9451fa551984c}\label{class_election_ae75dfaae702498d191f9451fa551984c}} 
+void {\bfseries S\+T\+V\+Winner\+Protocol} (int new\+Winner, string $\ast$candidate\+Names, int ivote)
+\item 
+\mbox{\Hypertarget{class_election_a0a845b2cfbb168e731f52f8000b9300d}\label{class_election_a0a845b2cfbb168e731f52f8000b9300d}} 
+void {\bfseries Loser\+Protocol} (int $\ast$$\ast$ballots, \mbox{\hyperlink{class_ballot_box}{Ballot\+Box}} $\ast$ballot\+Box, \mbox{\hyperlink{class_candidates}{Candidates}} $\ast$candidates)
+\item 
+\mbox{\Hypertarget{class_election_af4ceeecfcf05210221b8660fa21c415f}\label{class_election_af4ceeecfcf05210221b8660fa21c415f}} 
+void {\bfseries S\+T\+V\+Loser\+Protocol} (string $\ast$candidate\+Names)
+\item 
+\mbox{\Hypertarget{class_election_a6183a342ea5207bab643c07c5c329434}\label{class_election_a6183a342ea5207bab643c07c5c329434}} 
+int {\bfseries set\+Vote\+Vals} (int $\ast$ballot)
+\item 
+\mbox{\Hypertarget{class_election_a01132a55fd0df7ec5695fbed2630f8e3}\label{class_election_a01132a55fd0df7ec5695fbed2630f8e3}} 
+void {\bfseries adjust\+Vote} (int $\ast$this\+Vote)
+\item 
+\mbox{\Hypertarget{class_election_ac329d6dfef90fbba54dd31d2552881da}\label{class_election_ac329d6dfef90fbba54dd31d2552881da}} 
+int {\bfseries find\+New\+Loser} (string $\ast$candidate\+Names, string new\+Name)
+\item 
+\mbox{\Hypertarget{class_election_a6f67beb75e333b3eb0a3274bdb4a8c71}\label{class_election_a6f67beb75e333b3eb0a3274bdb4a8c71}} 
+void {\bfseries S\+T\+V\+Loser\+Bypass\+Protocol} (string $\ast$candidate\+Names)
+\item 
+\mbox{\Hypertarget{class_election_a974ce9ebf5d661eb38c7042138c7cae4}\label{class_election_a974ce9ebf5d661eb38c7042138c7cae4}} 
+int {\bfseries get\+Total\+Undecided} ()
+\item 
+\mbox{\Hypertarget{class_election_ac146255a0e3ec00a27f2e37d87e040d7}\label{class_election_ac146255a0e3ec00a27f2e37d87e040d7}} 
+int {\bfseries find\+Lowest\+VoteB} ()
+\item 
+\mbox{\Hypertarget{class_election_aa11b9bc1e6cb671927c7f9d7696dc311}\label{class_election_aa11b9bc1e6cb671927c7f9d7696dc311}} 
+void {\bfseries inc\+LoserB} ()
+\item 
+\mbox{\Hypertarget{class_election_a5a2606589bf71994251bb4e2c96a6d86}\label{class_election_a5a2606589bf71994251bb4e2c96a6d86}} 
+void {\bfseries inc\+WinnerB} ()
+\item 
+\mbox{\Hypertarget{class_election_a51ff43b0d9efe0480e99635ea4f0186c}\label{class_election_a51ff43b0d9efe0480e99635ea4f0186c}} 
+void {\bfseries new\+LoserB} (int loser)
+\item 
+\mbox{\Hypertarget{class_election_aeaf159924e75cdaa68a7733bfbf3c567}\label{class_election_aeaf159924e75cdaa68a7733bfbf3c567}} 
+void {\bfseries new\+WinnerB} (int winner)
+\item 
+\mbox{\Hypertarget{class_election_a5a935013e13d73e1a348c41eee65094d}\label{class_election_a5a935013e13d73e1a348c41eee65094d}} 
+void {\bfseries newest\+LoserB} (int loser)
+\item 
+\mbox{\Hypertarget{class_election_a3b0ee224b835aa20fdfeed7df5340b87}\label{class_election_a3b0ee224b835aa20fdfeed7df5340b87}} 
+void {\bfseries S\+T\+V\+Winner\+ProtocolB} (int new\+Winner, string $\ast$candidate\+Names, int ivote)
+\item 
+\mbox{\Hypertarget{class_election_a1cc77cda11c14dd2a4fda48dbaece738}\label{class_election_a1cc77cda11c14dd2a4fda48dbaece738}} 
+void {\bfseries S\+T\+V\+Loser\+ProtocolB} (string $\ast$candidate\+Names)
+\item 
+\mbox{\Hypertarget{class_election_aefe7bef0159f6f09ea7839d192ffa1d9}\label{class_election_aefe7bef0159f6f09ea7839d192ffa1d9}} 
+bool {\bfseries non\+Finalist} (int cand\+Val)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_election_a37b991a20d5e30bef5ddb7f7e76110b6}\label{class_election_a37b991a20d5e30bef5ddb7f7e76110b6}} 
+int {\bfseries droop\+Count}
+\item 
+\mbox{\Hypertarget{class_election_a9bb0d843a4dd9e94c4d10227dbb1e2c5}\label{class_election_a9bb0d843a4dd9e94c4d10227dbb1e2c5}} 
+std\+::string {\bfseries test\+Type}
+\item 
+\mbox{\Hypertarget{class_election_a989b896af3f08fe3aad55db603e142f1}\label{class_election_a989b896af3f08fe3aad55db603e142f1}} 
+\mbox{\hyperlink{class_ballot_box}{Ballot\+Box}} $\ast$ {\bfseries ballot\+Box}
+\item 
+\mbox{\Hypertarget{class_election_add3c98548f1b713b9bcb0a596d24d63f}\label{class_election_add3c98548f1b713b9bcb0a596d24d63f}} 
+\mbox{\hyperlink{class_candidates}{Candidates}} $\ast$ {\bfseries candidates}
+\item 
+\mbox{\Hypertarget{class_election_a93c89de0dbeccdcd5ab0ec14dfcf22dd}\label{class_election_a93c89de0dbeccdcd5ab0ec14dfcf22dd}} 
+int {\bfseries election\+Type\+\_\+}
+\item 
+\mbox{\Hypertarget{class_election_a0c92dd379261b142b200445166891ccb}\label{class_election_a0c92dd379261b142b200445166891ccb}} 
+int $\ast$$\ast$ {\bfseries results}
+\item 
+\mbox{\Hypertarget{class_election_a099487445a0834e19ab7146768be7841}\label{class_election_a099487445a0834e19ab7146768be7841}} 
+bool {\bfseries shuffle\+\_\+status}
+\item 
+\mbox{\Hypertarget{class_election_a2cf524dcd30c70f667dec1c01ade7970}\label{class_election_a2cf524dcd30c70f667dec1c01ade7970}} 
+int {\bfseries vote\+Total}
+\item 
+\mbox{\Hypertarget{class_election_a30577ff6b1d67c63b2f9726baff1925d}\label{class_election_a30577ff6b1d67c63b2f9726baff1925d}} 
+int {\bfseries candidate\+Total}
+\item 
+\mbox{\Hypertarget{class_election_a158f35a79c97b3b18c8351910f906e0b}\label{class_election_a158f35a79c97b3b18c8351910f906e0b}} 
+int $\ast$ {\bfseries vote\+Vals}
+\item 
+\mbox{\Hypertarget{class_election_a2a2b65d068e71e7c8366b8e0eede77ac}\label{class_election_a2a2b65d068e71e7c8366b8e0eede77ac}} 
+std\+::vector$<$ int $>$ {\bfseries finalists}
+\item 
+\mbox{\Hypertarget{class_election_a9aace09e8f4008da1d94eed3018d20cc}\label{class_election_a9aace09e8f4008da1d94eed3018d20cc}} 
+int $\ast$$\ast$ {\bfseries votes}
+\item 
+\mbox{\Hypertarget{class_election_a61f69a4e5efa768a3cd57aec7145fccf}\label{class_election_a61f69a4e5efa768a3cd57aec7145fccf}} 
+string {\bfseries Audit}
+\item 
+\mbox{\Hypertarget{class_election_aa2c6a28caf976f53a67aaac9c7c0f593}\label{class_election_aa2c6a28caf976f53a67aaac9c7c0f593}} 
+string {\bfseries Text\+Results}
+\item 
+\mbox{\Hypertarget{class_election_a74530999929fff5a60254525051be15d}\label{class_election_a74530999929fff5a60254525051be15d}} 
+int {\bfseries seat\+Num\+\_\+}
+\item 
+\mbox{\Hypertarget{class_election_a131963a3147d25ab02d558eb135af7f5}\label{class_election_a131963a3147d25ab02d558eb135af7f5}} 
+int $\ast$ {\bfseries candidate\+Bypass\+Vote\+Counts}
+\item 
+\mbox{\Hypertarget{class_election_a0e6ee92b68713252248664a5c30181e3}\label{class_election_a0e6ee92b68713252248664a5c30181e3}} 
+int $\ast$ {\bfseries candidate\+Bypass\+Undecided}
+\item 
+\mbox{\Hypertarget{class_election_a7cc78d8601c5cdd6fb4802c8c7845afd}\label{class_election_a7cc78d8601c5cdd6fb4802c8c7845afd}} 
+int $\ast$ {\bfseries candidate\+Bypass\+Winner}
+\item 
+\mbox{\Hypertarget{class_election_aa02463c4a1dfb820af90092d1910732f}\label{class_election_aa02463c4a1dfb820af90092d1910732f}} 
+int $\ast$ {\bfseries candidate\+Bypass\+Loser}
+\item 
+\mbox{\Hypertarget{class_election_a2c1ca8df74651fddb9cca05b278e6253}\label{class_election_a2c1ca8df74651fddb9cca05b278e6253}} 
+int $\ast$ {\bfseries cbl}
+\item 
+\mbox{\Hypertarget{class_election_aa23069727a2247e868093a767fc1c180}\label{class_election_aa23069727a2247e868093a767fc1c180}} 
+int $\ast$ {\bfseries cand\+Arr}
+\item 
+\mbox{\Hypertarget{class_election_a02fb16dced9a2b31e9fa57760baa3abd}\label{class_election_a02fb16dced9a2b31e9fa57760baa3abd}} 
+int $\ast$ {\bfseries cand\+Val}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gabri/\+Desktop/example fol/Election.\+h\item 
+C\+:/\+Users/gabri/\+Desktop/example fol/Election.\+cpp\end{DoxyCompactItemize}
