@@ -1,0 +1,49 @@
+\hypertarget{class_ballot_box}{}\doxysection{Ballot\+Box Class Reference}
+\label{class_ballot_box}\index{BallotBox@{BallotBox}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_ballot_box_ae1a3df998fab9d6e3d047831f9b68739}\label{class_ballot_box_ae1a3df998fab9d6e3d047831f9b68739}} 
+{\bfseries Ballot\+Box} (int election\+Type\+\_\+)
+\item 
+\mbox{\Hypertarget{class_ballot_box_a67de3fc3194d03e45f23cb50c5d49f08}\label{class_ballot_box_a67de3fc3194d03e45f23cb50c5d49f08}} 
+int {\bfseries Get\+Vote\+Total} ()
+\item 
+\mbox{\Hypertarget{class_ballot_box_aa8a05c3bd77b31b6d1845830aff6826e}\label{class_ballot_box_aa8a05c3bd77b31b6d1845830aff6826e}} 
+int {\bfseries Get\+Total\+Columns} ()
+\item 
+\mbox{\Hypertarget{class_ballot_box_acc0a077b87fb2705e67de17b9263b629}\label{class_ballot_box_acc0a077b87fb2705e67de17b9263b629}} 
+int $\ast$$\ast$ {\bfseries Get\+Ballots} ()
+\item 
+int $\ast$$\ast$ \mbox{\hyperlink{class_ballot_box_a54b15e3c3feb53dd4578843a28d418b7}{Add\+Votes}} (string $\ast$filenames, int file\+Total)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_ballot_box_a7b9fdc9ef5da3b832ce16fc72c2c17fa}\label{class_ballot_box_a7b9fdc9ef5da3b832ce16fc72c2c17fa}} 
+int {\bfseries col\+Total}
+\item 
+\mbox{\Hypertarget{class_ballot_box_a4d188db9ff4a3876c2110d452f995324}\label{class_ballot_box_a4d188db9ff4a3876c2110d452f995324}} 
+int {\bfseries election\+Type}
+\item 
+\mbox{\Hypertarget{class_ballot_box_ab40c2d5a612b304803c4cdfb1018e56f}\label{class_ballot_box_ab40c2d5a612b304803c4cdfb1018e56f}} 
+int {\bfseries vote\+Total}
+\item 
+\mbox{\Hypertarget{class_ballot_box_a3438fe63ddfb284a3141b27e9720562f}\label{class_ballot_box_a3438fe63ddfb284a3141b27e9720562f}} 
+int $\ast$$\ast$ {\bfseries ballots}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_ballot_box_a54b15e3c3feb53dd4578843a28d418b7}\label{class_ballot_box_a54b15e3c3feb53dd4578843a28d418b7}} 
+\index{BallotBox@{BallotBox}!AddVotes@{AddVotes}}
+\index{AddVotes@{AddVotes}!BallotBox@{BallotBox}}
+\doxysubsubsection{\texorpdfstring{AddVotes()}{AddVotes()}}
+{\footnotesize\ttfamily int $\ast$$\ast$ Ballot\+Box\+::\+Add\+Votes (\begin{DoxyParamCaption}\item[{string $\ast$}]{filenames,  }\item[{int}]{file\+Total }\end{DoxyParamCaption})}
+
+The main function within ballot box that creates a 2D array $\ast$of ballots for counting. This function also includes ballotbox validatiion where $\ast$invalid votes are flagged and not counted. This function also determines is a proper filename address has $\ast$been entered and if the election is considered valid. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/gabri/\+Desktop/example fol/Ballot\+Box.\+h\item 
+C\+:/\+Users/gabri/\+Desktop/example fol/Ballot\+Box.\+cpp\end{DoxyCompactItemize}
