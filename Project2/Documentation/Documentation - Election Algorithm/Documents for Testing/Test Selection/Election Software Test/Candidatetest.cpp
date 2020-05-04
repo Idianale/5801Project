@@ -1,6 +1,6 @@
 //
 // Created by m0narch on 3/27/20.
-//  This class is currently not used in the algorthim as we were running into a lot of bugs. Currently still here because it is a much cleaner data structure to use and will be listed on the new PBI
+//
 
 #include "Candidate.h"
 
