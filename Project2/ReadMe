@@ -1,22 +1,26 @@
-This is the read me for project2 agile STV program.
+This is the ReadMe for project2 agile STV program.
 
 src ---
 
 All of our code for the STV and Plurality Algothrims (BallotBox, Candidates, Election) are working currently. 
-Testing has been done but there still might be one to two edge cases left, will add to Buglist that is due next week with what we find
+Few bugs that still exist that need to be fixed in the next version.
 
 GUI also works as intended and we are able to grab all of the files we need. We didnt have time to fully implement the help screen so that is the next step for the new sprint.
 We also can't find out how to fully implement the GUI to the election algorthim so having these two parts of our system mesh is still something to work on.
 
+The src code does not compile currently, will work with TA on showing how they can see our Election algorthim progress... These files can be found in testing.
+
+
 Testing ----
 
-Testing was done as we went along, all test files are currently within our google drive and need to be organized and written up to for Github next week.
+Testing was done as we went along, Adam did system and unit testing for Election algorthim. Patrick did system and unit testing for GUI.
 
 Documentation --
 
-Doxygen used for documenatation -- comments have been made in the code.
+Doxygen used for documenatation -- comments have been made in the code. Two seperate Doxygen "files" have been made.
 
-We will also have adiditonal documentation for our testing next week.
+Inital Doxygen that took our src code that includes GUI and election algorthim
 
+Second Doxygen of our election algorthim specficially with code that does work.
 
 
