@@ -36,11 +36,12 @@ int main()
     // First number parameter in runElection function 
     //If one is selected -- STV election is run
     //IF two is selected -- Plurality election is run
+    //C:\Users\Adam\Documents\example_election_file2.csv
 
+    TestResults = MyElection.runElection(file, 1, 2, 2);
+    //First # Parameter -- number of .csv files used
+    //Second # Parameter-- election type -- STV equals 1 -- Plurality equals 2
 
-    TestResults = MyElection.runElection(file, 2, 1, 2);
-    //First # Parameter -- Election Type
-    //Second # Parameter-- number of .csv files used
     //Third # Parameter-- total number of winners
 
 
